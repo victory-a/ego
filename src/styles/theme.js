@@ -12,7 +12,7 @@ export default {
   ...theme,
   breakpoints,
   fonts: {
-    heading: "'Indie Flower', cursive, sans-serif",
+    heading: "'Raleway', cursive, sans-serif",
     body: "'Raleway', sans-serif"
   },
   fontSizes: {
@@ -29,7 +29,7 @@ export default {
   },
   colors: {
     ...theme.colors,
-    buddy: {
+    ego: {
       ...colors
     }
   }

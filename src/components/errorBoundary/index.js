@@ -3,6 +3,12 @@ import styled from "styled-components";
 import { device } from "styles";
 import colors from "styles/colors";
 
+const refreshStyle = {
+  color: colors.primary,
+  cursor: "pointer",
+  textDecoration: "underline"
+};
+
 const Container = styled.div`
   display: flex;
   align-items: center;
@@ -31,7 +37,10 @@ const Message = styled.div`
 const ErrorBoundaryFallbackComponent = () => (
   <Container>
     <Message>
-      Hey, something went wrong! .. Please refresh!
+      Hey, something went wrong!
+      <span onClick={() => window.location.reload()} style={refreshStyle}>
+        Please refresh!
+      </span>
       <span role="img" aria-label="face-emoji">
         {" "}
         😞

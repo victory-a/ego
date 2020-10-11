@@ -15,18 +15,14 @@ export const device = {
 };
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Raleway:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
   .js-focus-visible :focus:not([data-focus-visible-added]) {
     outline: none;
     box-shadow: none;
   }
 
   html {
-    font-size: 50%;
-
-    @media ${device.mobile} {
       font-size: 62.5%;
-    }
   }
   
  body {

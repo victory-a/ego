@@ -1,43 +1,36 @@
 import React, { lazy } from "react";
 import { Redirect } from "react-router-dom";
 
+const GetStarted = lazy(() => import("pages/Auth/GetStarted"));
 const Login = lazy(() => import("pages/Auth/Login"));
-const CreateAccount = lazy(() => import("pages/Auth/CreateAccount"));
-const ForgotPassword = lazy(() => import("pages/Auth/ForgotPassword"));
-const ResetPassword = lazy(() => import("pages/Auth/ResetPassword"));
+const Verify = lazy(() => import("pages/Auth/Verify"));
 const Home = lazy(() => import("pages/Home"));
-const Profile = lazy(() => import("pages/Profile"));
+const Pay = lazy(() => import("pages/Pay"));
 
 const routes = [
   {
     path: "/",
     exact: true,
     isPrivate: false,
+    component: GetStarted
+  },
+  {
+    path: "/login",
+    exact: true,
+    isPrivate: false,
     component: Login
   },
   {
-    path: "/create-account",
+    path: "/verify",
     exact: true,
     isPrivate: false,
-    component: CreateAccount
-  },
-  {
-    path: "/forgot-password",
-    exact: true,
-    isPrivate: false,
-    component: ForgotPassword
-  },
-  {
-    path: "/reset-password",
-    exact: true,
-    isPrivate: false,
-    component: ResetPassword
+    component: Verify
   },
   {
     path: "*",
     exact: true,
     isPrivate: false,
-    component: Login
+    component: GetStarted
   },
   {
     path: "/",
@@ -46,10 +39,16 @@ const routes = [
     component: Home
   },
   {
-    path: "/profile",
+    path: "/pay",
     exact: true,
     isPrivate: true,
-    component: Profile
+    component: Pay
+  },
+  {
+    path: "/transactions",
+    exact: true,
+    isPrivate: true,
+    component: Pay
   },
   {
     path: "*",
