@@ -48,8 +48,17 @@ const GlobalStyles = createGlobalStyle`
     padding: 2rem !important;
   }
 
+  input {
+    background-color: ${colors.froastedWhite} !important;
+    color: ${colors.blackout} !important;
+  }
+
   label {
     font-size: 1.4rem !important;
+  }
+
+  a {
+    text-decoration: none !important;
   }
 
   ul {
@@ -57,10 +66,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   input {
-    :focus,
-    :hover {
-      outline: none;
+    :focus {
       border: 1px solid ${colors.primary} !important;
+      outline: none;
       box-shadow: 0 0 0 .8px ${colors.primary} !important;
     }
   }

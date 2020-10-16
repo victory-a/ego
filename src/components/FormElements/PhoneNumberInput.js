@@ -20,7 +20,9 @@ export default function PhoneNumberInput(props) {
         {...props}
       />
 
-      {meta.touched && meta.error ? <FormErrorMessage>{meta.error}</FormErrorMessage> : null}
+      {meta.touched && meta.error ? (
+        <FormErrorMessage fontSize="md">{meta.error}</FormErrorMessage>
+      ) : null}
     </FormControl>
   );
 }

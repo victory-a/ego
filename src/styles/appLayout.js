@@ -22,7 +22,7 @@ export const LogoWrapper = styled.div`
 `;
 
 export const FormWrapper = styled.div`
-  max-width: 45rem;
+  max-width: 44rem;
   width: 95%;
   border-radius: 10px;
   padding: 3rem;
@@ -30,16 +30,15 @@ export const FormWrapper = styled.div`
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.04);
 `;
 
-export const TitleContainer = styled.div`
+export const FormContainer = styled.div`
   padding: 0 10px;
   margin-bottom: 20px;
 `;
 
 export const TitleWrapper = styled.h1`
   font-size: 2.1rem;
-  font-weight: 600;
-  display: flex;
-  flex-direction: column;
+  font-weight: bold;
+  line-height: 25px;
   text-align: center;
   color: ${colors.blackout};
   margin-bottom: 3rem;
@@ -49,8 +48,17 @@ export const TitleWrapper = styled.h1`
   }
 `;
 
-export const Description = styled.p`
+export const DescriptionWrapper = styled.p`
   text-align: center;
   color: ${colors.darkGrey};
   font-weight: bold;
+`;
+
+export const ConfirmationWrapper = styled(DescriptionWrapper)`
+  color: ${colors.darkGrey};
+  font-size: 1.6rem;
+`;
+
+export const ResendWrapper = styled.p`
+  text-align: center;
 `;
