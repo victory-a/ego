@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import colors from "styles/colors";
 
 const size = {
   mobile: "375px",
@@ -22,21 +23,46 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html {
+    font-size: 50%;
+
+    @media ${device.mobile} {
       font-size: 62.5%;
+    }
   }
   
  body {
     width: 100%;
     height: 100%;
-    font-size: 1.6rem;
+    font-size: 14px;
     min-height: 100%;
     font-family: 'Raleway', sans-serif;
     -webkit-font-smoothing: antialiased;
     outline: none;
+    color: ${colors.fauxBlack};
+    background-color: ${colors.cream};
+  }
+
+  button,
+  input {
+    font-size: 1.4rem !important;
+    padding: 2rem !important;
+  }
+
+  label {
+    font-size: 1.4rem !important;
   }
 
   ul {
     list-style-type: none;
+  }
+
+  input {
+    :focus,
+    :hover {
+      outline: none;
+      border: 1px solid ${colors.primary} !important;
+      box-shadow: 0 0 0 .8px ${colors.primary} !important;
+    }
   }
 `;
 
