@@ -29,7 +29,7 @@ export default {
   },
   colors: {
     ...theme.colors,
-    buddy: {
+    ego: {
       ...colors
     }
   }
