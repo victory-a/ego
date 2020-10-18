@@ -1,5 +1,6 @@
 export default {
   primary: "#C9874A",
+  primaryHover: "#996739",
   white: "#fff",
   froastedWhite: "#F8F8F8",
   lightGrey: "#E5E7EB",
@@ -7,5 +8,6 @@ export default {
   black: "#000",
   fauxBlack: "#3E3F42",
   blackout: "#333",
-  cream: "#FAFAFA"
+  cream: "#FAFAFA",
+  cyanBlue: "#eaedf3"
 };

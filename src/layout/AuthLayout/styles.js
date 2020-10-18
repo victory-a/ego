@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { device } from "styles";
+// import { device } from "styles";
 import colors from "styles/colors";
 
-export const AppContainer = styled.div`
+export const AuthContainer = styled.main`
   width: 100%;
   height: 100%;
   min-height: 100vh;
@@ -33,6 +33,7 @@ export const FormWrapper = styled.div`
 export const FormContainer = styled.div`
   padding: 0 10px;
   margin-bottom: 20px;
+  /* margin-top: 15px; */
 `;
 
 export const TitleWrapper = styled.h1`
@@ -43,7 +44,7 @@ export const TitleWrapper = styled.h1`
   color: ${colors.blackout};
   margin-bottom: 3rem;
 
-  & .secondary {
+  & span {
     color: ${colors.primary};
   }
 `;
@@ -61,4 +62,14 @@ export const ConfirmationWrapper = styled(DescriptionWrapper)`
 
 export const ResendWrapper = styled.p`
   text-align: center;
+`;
+
+export const CountdownWrapper = styled.p`
+  font-weight: bold;
+  text-align: center;
+  margin: 1.5rem 0;
+
+  & span {
+    color: ${colors.primary};
+  }
 `;

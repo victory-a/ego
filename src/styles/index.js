@@ -16,7 +16,6 @@ export const device = {
 };
 
 const GlobalStyles = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
   .js-focus-visible :focus:not([data-focus-visible-added]) {
     outline: none;
     box-shadow: none;
@@ -44,11 +43,15 @@ const GlobalStyles = createGlobalStyle`
 
   button,
   input {
-    font-size: 1.4rem !important;
     padding: 2rem !important;
   }
 
+  button {
+    font-size: 1.6rem !important;
+  }
+
   input {
+    font-size: 1.4rem !important;
     background-color: ${colors.froastedWhite} !important;
     color: ${colors.blackout} !important;
   }
@@ -59,6 +62,11 @@ const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none !important;
+    transform: color .5s;
+    
+    :hover {
+      color: ${colors.primaryHover}
+    }
   }
 
   ul {

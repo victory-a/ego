@@ -12,7 +12,9 @@ export default function TextInput(props) {
 
       <Input name={name} type={type} {...field} {...props} />
 
-      {meta.touched && meta.error ? <FormErrorMessage>{meta.error}</FormErrorMessage> : null}
+      {meta.touched && meta.error ? (
+        <FormErrorMessage fontSize="md">{meta.error}</FormErrorMessage>
+      ) : null}
     </FormControl>
   );
 }

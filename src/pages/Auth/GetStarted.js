@@ -7,7 +7,7 @@ import { getStartedValidation } from "utils/validationSchema";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
 
-import { FormContainer, TitleWrapper, DescriptionWrapper } from "styles/appLayout";
+import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
 
 const GetStarted = () => {
   const { push } = useHistory();
@@ -20,7 +20,7 @@ const GetStarted = () => {
       <FormContainer>
         <TitleWrapper>
           Make Payments <br />
-          <span className="secondary">However, Whenever!</span>
+          <span>However, Whenever!</span>
         </TitleWrapper>
 
         <DescriptionWrapper>

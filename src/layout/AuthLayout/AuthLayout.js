@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Link, Flex } from "@chakra-ui/core";
 import { ReactComponent as Logo } from "assets/eyowo-logo.svg";
-import { AppContainer, LogoWrapper, FormWrapper } from "styles/appLayout";
+import { AuthContainer, LogoWrapper, FormWrapper } from "./styles";
 
 const AuthLayout = ({ children }) => {
   let location = useLocation();
@@ -15,7 +15,7 @@ const AuthLayout = ({ children }) => {
   }, [location.pathname]);
 
   return (
-    <AppContainer>
+    <AuthContainer>
       <LogoWrapper>
         <span role="img" aria-label="ego-logo">
           <Logo />
@@ -32,7 +32,7 @@ const AuthLayout = ({ children }) => {
           <Link color="ego.primary">Terms & Conditions</Link>
         </Flex>
       ) : null}
-    </AppContainer>
+    </AuthContainer>
   );
 };
 

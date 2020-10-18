@@ -17,5 +17,5 @@ export const getStartedValidation = Yup.object().shape({
 });
 
 export const otpValidation = Yup.object().shape({
-  passcode: Yup.string().required("OTP is reduired.")
+  passcode: Yup.string().required("OTP is required.")
 });
