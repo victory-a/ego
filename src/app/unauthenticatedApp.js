@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import routesList from "routes/routesList";
 
 import { FullPageSpinner } from "components/loaders.js";
-import AuthLayout from "layout/auth-layout";
+import AuthLayout from "layout/AuthLayout/AuthLayout";
 
 const UnauthenticatedApp = () => {
   const publicRoutes = routesList.filter(route => !route.isPrivate);

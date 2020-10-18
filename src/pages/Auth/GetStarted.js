@@ -1,29 +1,40 @@
 import React, { Fragment } from "react";
-import { Formik, Form } from "formik";
 import { Box } from "@chakra-ui/core";
-import { TitleContainer, TitleWrapper, Description } from "styles/appLayout";
+import { Formik, Form } from "formik";
+import { useHistory } from "react-router-dom";
+
+import { getStartedValidation } from "utils/validationSchema";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
 
+import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
+
 const GetStarted = () => {
-  const handleSubmit = () => {};
+  const { push } = useHistory();
+  const handleSubmit = ({ mobile }) => {
+    push({ pathname: "/verify", state: { mobile: mobile.replace(/-/gi, "") } });
+  };
 
   return (
     <Fragment>
-      <TitleContainer>
+      <FormContainer>
         <TitleWrapper>
-          Make Payments
-          <span className="secondary">However, Whenever!</span>
+          Make Payments <br />
+          <span>However, Whenever!</span>
         </TitleWrapper>
 
-        <Description>
+        <DescriptionWrapper>
           Get started sending, receiving, spending and paying bills with just your phone number.
-        </Description>
+        </DescriptionWrapper>
 
-        <Formik initialValues={{ mobile: "" }} onSubmit={handleSubmit}>
+        <Formik
+          initialValues={{ mobile: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={getStartedValidation}
+        >
           {() => (
             <Form>
-              <Box my="6rem">
+              <Box my="8rem">
                 <PhoneNumberInput
                   name="mobile"
                   label="Phone number"
@@ -33,13 +44,13 @@ const GetStarted = () => {
                   Ensure you have access to this number.
                 </Box>
               </Box>
-              <StyledButton width="full" isLoading={false}>
+              <StyledButton width="full" isLoading={false} type="submit">
                 Get Started
               </StyledButton>
             </Form>
           )}
         </Formik>
-      </TitleContainer>
+      </FormContainer>
     </Fragment>
   );
 };

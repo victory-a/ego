@@ -1,24 +1,16 @@
 import React from "react";
-import NumberFormat from "react-number-format";
 import { useField } from "formik";
 import { Input, FormLabel, FormControl, FormErrorMessage } from "@chakra-ui/core";
 
-export default function PhoneNumberInput(props) {
-  const { label, name } = props;
+export default function TextInput(props) {
   const [field, meta] = useField(props);
+  const { label, name, type = "text" } = props;
 
   return (
-    <FormControl mb="1rem" isInvalid={Boolean(meta.touched && meta.error)}>
+    <FormControl mb="1.5rem" isInvalid={Boolean(meta.touched && meta.error)}>
       <FormLabel htmlFor={name}>{label}</FormLabel>
 
-      <NumberFormat
-        type="tel"
-        name={name}
-        customInput={Input}
-        format="####-###-####"
-        {...field}
-        {...props}
-      />
+      <Input name={name} type={type} {...field} {...props} />
 
       {meta.touched && meta.error ? (
         <FormErrorMessage fontSize="md">{meta.error}</FormErrorMessage>
