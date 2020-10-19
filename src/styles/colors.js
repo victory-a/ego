@@ -9,5 +9,6 @@ export default {
   fauxBlack: "#3E3F42",
   blackout: "#333",
   cream: "#FAFAFA",
-  cyanBlue: "#eaedf3"
+  cyanBlue: "#eaedf3",
+  inactive: "#737a91"
 };

@@ -9,13 +9,11 @@ export const AppContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  border: 1px solid red;
 `;
 
 export const MainContentWrapper = styled.main`
   width: 100%;
   max-width: 85rem;
-  border: 1px solid red;
   overflow-y: scroll;
   scroll-behavior: smooth;
 `;
