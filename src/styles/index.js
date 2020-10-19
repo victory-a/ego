@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 import colors from "styles/colors";
 
 const size = {
-  mobile: "375px",
+  mobile: "425px",
   tablet: "768px",
   laptop: "1025px",
   desktop: "1441px"
@@ -64,9 +64,9 @@ const GlobalStyles = createGlobalStyle`
     text-decoration: none !important;
     transform: color .5s;
     
-    :hover {
+    /* :hover {
       color: ${colors.primaryHover}
-    }
+    } */
   }
 
   ul {
