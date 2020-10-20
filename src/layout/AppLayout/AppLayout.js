@@ -1,7 +1,7 @@
 import React from "react";
 import { AppContainer, MainContentWrapper, TopNavContainer, BottomNavContainer } from "./styles";
 import { TopNav, BottomNav } from "components/Navigation";
-import { MobileScreen } from "layout/viewports";
+import { TabletScreen } from "layout/viewports";
 
 const pageDetailsContext = React.createContext();
 
@@ -17,11 +17,11 @@ const AppLayout = ({ children }) => {
 
         <MainContentWrapper>{children}</MainContentWrapper>
 
-        <MobileScreen>
+        <TabletScreen>
           <BottomNavContainer>
             <BottomNav />
           </BottomNavContainer>
-        </MobileScreen>
+        </TabletScreen>
       </AppContainer>
     </Provider>
   );

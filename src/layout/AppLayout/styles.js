@@ -35,7 +35,7 @@ export const TopNavContainer = styled.nav`
 
 export const BottomNavContainer = styled.footer`
   width: 100%;
-  height: 7rem;
+  height: 6.5rem;
   position: fixed;
   display: flex;
   align-items: center;

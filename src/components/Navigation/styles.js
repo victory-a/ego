@@ -71,10 +71,10 @@ export const BottomNavList = styled(Navlist)`
 export const BottomNavListItem = styled(NavListItem)`
   height: 100%;
 
-  & .active {
+  /* & .active {
     padding: 0.7rem;
     border-top: 2px solid ${colors.primary};
-  }
+  } */
 
   a {
     flex-direction: column;
