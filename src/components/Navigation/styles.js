@@ -8,11 +8,11 @@ export const TopNavigationWrapper = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 export const Navlist = styled.ul`
   display: none;
-
   justify-content: center;
   align-items: center;
   margin: 0 3.5rem;
@@ -90,8 +90,8 @@ export const BottomNavListItem = styled(NavListItem)`
 
 export const UserInfoContainer = styled.div`
   margin-right: 2rem;
-  display: flex;
-  align-items: center;
+  /* display: flex; */
+  /* align-items: center; */
   cursor: pointer;
 
   img {
@@ -100,7 +100,7 @@ export const UserInfoContainer = styled.div`
     object-fit: center;
   }
 
-  p {
+  /* p {
     display: none;
 
     font-size: 1.4rem;
@@ -111,7 +111,7 @@ export const UserInfoContainer = styled.div`
     @media ${device.tablet} {
       display: initial;
     }
-  }
+  } */
 `;
 
 export const BottomNavigationWrapper = styled.div``;

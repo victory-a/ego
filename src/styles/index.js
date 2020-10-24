@@ -48,6 +48,13 @@ const GlobalStyles = createGlobalStyle`
 
   button {
     font-size: 1.6rem !important;
+
+/* override chakra-ui default menu-button color hover */
+    &[role="menuitem"] {
+      :focus {
+        background-color: ${colors.primaryHoverLight} !important;
+      }
+    }
   }
 
   input {
@@ -63,10 +70,6 @@ const GlobalStyles = createGlobalStyle`
   a {
     text-decoration: none !important;
     transform: color .5s;
-    
-    /* :hover {
-      color: ${colors.primaryHover}
-    } */
   }
 
   ul {
