@@ -1,7 +1,7 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
 import { Box, Link, Flex } from "@chakra-ui/core";
-import { ReactComponent as Logo } from "assets/eyowo-logo.svg";
+// import { ReactComponent as Logo } from "assets/eyowo-logo.svg";
 import { AuthContainer, LogoWrapper, FormWrapper } from "./styles";
 
 const AuthLayout = ({ children }) => {

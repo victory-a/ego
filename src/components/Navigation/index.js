@@ -13,7 +13,7 @@ import {
   BottomNavList,
   BottomNavListItem
 } from "./styles";
-import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
+// import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
 
 export function TopNav() {
   const { pathname } = useLocation();
