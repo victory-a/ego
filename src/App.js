@@ -17,9 +17,7 @@ function App() {
 
   return (
     <Suspense fallback={<FullPageSpinner />}>
-      {/* {user ? <AuthenticatedApp /> : <UnauthenticatedApp />} */}
-      {/* <UnauthenticatedApp /> */}
-      <AuthenticatedApp />
+      {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
     </Suspense>
   );
 }
