@@ -18,7 +18,8 @@ const AuthLayout = ({ children }) => {
     <AuthContainer>
       <LogoWrapper>
         <span role="img" aria-label="ego-logo">
-          <Logo />
+          {/* <Logo /> */}
+          Logo
         </span>
       </LogoWrapper>
 

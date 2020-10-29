@@ -41,12 +41,8 @@ export const TitleWrapper = styled.h1`
   font-weight: bold;
   line-height: 25px;
   text-align: center;
-  color: ${colors.blackout};
+  color: ${colors.primary};
   margin-bottom: 3rem;
-
-  & span {
-    color: ${colors.primary};
-  }
 `;
 
 export const DescriptionWrapper = styled.p`

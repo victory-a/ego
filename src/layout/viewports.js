@@ -13,3 +13,10 @@ export const NonMobileScreen = ({ children }) => {
   if (isTablet) return children;
   return null;
 };
+
+export const TabletScreen = ({ children }) => {
+  const isTablet = useMediaQuery({ maxWidth: 768 });
+
+  if (isTablet) return children;
+  return null;
+};
