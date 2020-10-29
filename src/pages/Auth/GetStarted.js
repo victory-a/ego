@@ -19,8 +19,8 @@ const GetStarted = () => {
     <Fragment>
       <FormContainer>
         <TitleWrapper>
-          Make Payments <br />
-          <span>However, Whenever!</span>
+          Transact <br />
+          <span>with minimum fuss</span>
         </TitleWrapper>
 
         <DescriptionWrapper>

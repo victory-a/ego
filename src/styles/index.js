@@ -60,7 +60,7 @@ const GlobalStyles = createGlobalStyle`
   input {
     font-size: 1.4rem !important;
     background-color: ${colors.froastedWhite} !important;
-    color: ${colors.blackout} !important;
+    color: ${colors.primary} !important;
   }
 
   label {

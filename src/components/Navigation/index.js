@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box } from "@chakra-ui/core";
+import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra-ui/core";
 import { IoIosLogOut } from "react-icons/io";
 
 import navList from "routes/navList";
@@ -21,7 +21,8 @@ export function TopNav() {
   return (
     <TopNavigationWrapper>
       <Link to="/">
-        <EyowoLogo />
+        {/* <EyowoLogo /> */}
+        logo
       </Link>
 
       <Navlist>
@@ -50,9 +51,12 @@ export function TopNav() {
       <UserInfoContainer>
         <Menu autoSelect={false}>
           <MenuButton>
-            <Avatar />
+            <Flex>
+              <Avatar mr="1rem" />
+              <p>soks</p>
+            </Flex>
           </MenuButton>
-          <MenuList borderRadius="8px" placement="bottom" border="0.5px solid #C9874A">
+          <MenuList borderRadius="8px" placement="bottom" border="0.5px solid #2C1338">
             <MenuItem p="1rem">
               <Box as="span" mr="0.5rem">
                 <IoIosLogOut />

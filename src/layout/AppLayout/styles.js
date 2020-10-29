@@ -19,7 +19,7 @@ export const MainContentWrapper = styled.main`
 `;
 
 export const TopNavContainer = styled.nav`
-  width: 100%;
+  width: 100vw;
   height: 6.6rem;
   position: fixed;
   display: flex;
