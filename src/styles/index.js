@@ -41,7 +41,6 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${colors.cream};
   }
 
-  button,
   input {
     padding: 2rem !important;
   }

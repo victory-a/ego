@@ -54,32 +54,28 @@ export const NavListItem = styled.li`
   }
 `;
 
-export const BottomNavList = styled(Navlist)`
+export const BottomNavList = styled.footer`
   display: flex;
-  justify-content: space-evenly;
-  margin: 0;
-
-  li {
-    flex: 1;
-  }
-
-  & li:not(:last-of-type) {
-    margin-right: initial;
-  }
+  justify-content: space-between;
+  list-style: none;
+  height: 100%;
+  width: 100%;
 `;
 
 export const BottomNavListItem = styled(NavListItem)`
   height: 100%;
-
-  /* & .active {
-    padding: 0.7rem;
-    border-top: 2px solid ${colors.primary};
-  } */
+  flex: 1;
 
   a {
+    display: flex;
     flex-direction: column;
     text-align: center;
-    height: 100%;
+    padding-top: 1rem;
+    border-top: 2.5px solid ${colors.white};
+
+    &.active {
+      border-color: ${colors.primary};
+    }
   }
 
   svg {
@@ -90,8 +86,6 @@ export const BottomNavListItem = styled(NavListItem)`
 
 export const UserInfoContainer = styled.div`
   margin-right: 2rem;
-  /* display: flex; */
-  /* align-items: center; */
   cursor: pointer;
 
   img {
@@ -99,19 +93,6 @@ export const UserInfoContainer = styled.div`
     height: 3.5rem;
     object-fit: center;
   }
-
-  /* p {
-    display: none;
-
-    font-size: 1.4rem;
-    color: ${colors.black};
-    font-weight: bold;
-    margin-left: 1rem;
-
-    @media ${device.tablet} {
-      display: initial;
-    }
-  } */
 `;
 
 export const BottomNavigationWrapper = styled.div``;

@@ -10,6 +10,7 @@ const StyledButton = styled(Button)`
   transition: all 0.9s ease-in-out;
   background: ${colors.primary} !important;
   border-radius: 5px;
+  padding: 2rem;
 
   &:hover {
     transform: translateY(1.5px);
