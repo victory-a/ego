@@ -55,17 +55,3 @@ export const ConfirmationWrapper = styled(DescriptionWrapper)`
   color: ${colors.darkGrey};
   font-size: 1.6rem;
 `;
-
-export const ResendWrapper = styled.p`
-  text-align: center;
-`;
-
-export const CountdownWrapper = styled.p`
-  font-weight: bold;
-  text-align: center;
-  margin: 1.5rem 0;
-
-  & span {
-    color: ${colors.primary};
-  }
-`;

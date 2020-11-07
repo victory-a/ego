@@ -15,11 +15,10 @@ import {
   CountdownWrapper
 } from "layout/AuthLayout/styles";
 import TextInput from "components/FormElements/TextInput";
+import CountdownTimer from "components/CountDown";
 
 const Verify = () => {
   const { push } = useHistory();
-  const [timer, setTimer] = React.useState(false);
-
   const { state: { mobile } = {} } = useLocation();
 
   const time = "00:60";
@@ -63,18 +62,7 @@ const Verify = () => {
                 <TextInput label="OTP" placeholder="Enter OTP" maxLength={6} name="passcode" />
               </Box>
 
-              {timer ? (
-                <CountdownWrapper>
-                  Didn’t get code?{" "}
-                  <span>
-                    <Link>Click Here</Link>
-                  </span>
-                </CountdownWrapper>
-              ) : (
-                <CountdownWrapper>
-                  Resend code in <span className="timer">{`(${time})`}</span>
-                </CountdownWrapper>
-              )}
+              <CountdownTimer />
 
               <StyledButton width="full" isLoading={false} type="submit">
                 Continue
