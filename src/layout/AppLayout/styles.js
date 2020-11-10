@@ -13,15 +13,17 @@ export const AppContainer = styled.div`
 
 export const MainContentWrapper = styled.main`
   width: 100%;
-  max-width: 85rem;
+  min-height: calc(100vh - 6.6rem);
+  width: 100%;
   overflow-y: scroll;
   scroll-behavior: smooth;
+  padding: 0 2rem;
 `;
 
 export const TopNavContainer = styled.nav`
   width: 100vw;
   height: 6.6rem;
-  position: fixed;
+  position: sticky;
   display: flex;
   align-items: center;
   top: 0;

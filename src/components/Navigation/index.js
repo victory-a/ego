@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
 import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra-ui/core";
 import { IoIosLogOut } from "react-icons/io";
+import maleFB from "assets/male-fb.svg";
 
 import navList from "routes/navList";
 
@@ -51,8 +52,8 @@ export function TopNav() {
       <UserInfoContainer>
         <Menu autoSelect={false}>
           <MenuButton>
-            <Flex>
-              <Avatar mr="1rem" />
+            <Flex alignItems="center">
+              <Avatar name="Victory Asokomeh" src={maleFB} mr="1rem" />
               <p>soks</p>
             </Flex>
           </MenuButton>

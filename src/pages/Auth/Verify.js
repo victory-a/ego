@@ -8,12 +8,7 @@ import { phoneNumberFormat } from "utils/reformatMobile";
 import { otpValidation } from "utils/validationSchema";
 import StyledButton from "components/CustomButton";
 
-import {
-  FormContainer,
-  TitleWrapper,
-  ConfirmationWrapper,
-  CountdownWrapper
-} from "layout/AuthLayout/styles";
+import { FormContainer, TitleWrapper, ConfirmationWrapper } from "layout/AuthLayout/styles";
 import TextInput from "components/FormElements/TextInput";
 import CountdownTimer from "components/CountDown";
 
@@ -21,12 +16,10 @@ const Verify = () => {
   const { push } = useHistory();
   const { state: { mobile } = {} } = useLocation();
 
-  const time = "00:60";
   const handleSubmit = () => {};
 
   React.useLayoutEffect(() => {
     if (!mobile) push("/");
-    // console.log(mobile);
   });
 
   return (

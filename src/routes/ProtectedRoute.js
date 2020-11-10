@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import { ErrorBoundary } from "react-error-boundary";
+import ErrorBoundary from "components/errorBoundary";
 import ErrorBoundaryFallback from "../components/errorBoundary";
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {

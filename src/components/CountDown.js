@@ -19,9 +19,9 @@ const CountdownTimer = () => {
       {timeLeft > 0 ? (
         <CountdownWrapper>Resend code in {`(${timeLeft})`}</CountdownWrapper>
       ) : (
-        <CountdownWrapper>
+        <LightCountdownWrapper>
           Didn't get code? <span className="resend-otp">Click here</span>
-        </CountdownWrapper>
+        </LightCountdownWrapper>
       )}
     </>
   );
@@ -41,5 +41,10 @@ const CountdownWrapper = styled.p`
   .resend-otp {
     color: ${colors.primary};
     cursor: pointer;
+    font-weight: bold;
   }
+`;
+
+const LightCountdownWrapper = styled(CountdownWrapper)`
+  font-weight: normal;
 `;

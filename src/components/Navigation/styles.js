@@ -17,6 +17,8 @@ export const Navlist = styled.ul`
   align-items: center;
   margin: 0 3.5rem;
   width: 100%;
+  border-left: 1px solid #eaedf3;
+  border-right: 1px solid #eaedf3;
 
   @media ${device.tablet} {
     display: flex;
@@ -86,6 +88,7 @@ export const BottomNavListItem = styled(NavListItem)`
 
 export const UserInfoContainer = styled.div`
   margin-right: 2rem;
+  display: flex;
   cursor: pointer;
 
   img {
