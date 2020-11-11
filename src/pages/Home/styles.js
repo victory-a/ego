@@ -4,7 +4,6 @@ import colors from "styles/colors";
 
 export const HomeWrapper = styled.section`
   padding: 3rem 2rem;
-  /* border: 1px solid red; */
-  max-width: 85rem;
+  max-width: 75rem;
   margin: 0 auto;
 `;

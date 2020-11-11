@@ -20,3 +20,10 @@ export const TabletScreen = ({ children }) => {
   if (isTablet) return children;
   return null;
 };
+
+export const AboveTabletScreen = ({ children }) => {
+  const isTablet = useMediaQuery({ minWidth: 767 });
+
+  if (isTablet) return children;
+  return null;
+};

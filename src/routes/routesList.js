@@ -6,6 +6,8 @@ const Login = lazy(() => import("pages/Auth/Login"));
 const Verify = lazy(() => import("pages/Auth/Verify"));
 const Home = lazy(() => import("pages/Home"));
 const Pay = lazy(() => import("pages/Pay"));
+const Save = lazy(() => import("pages/Save"));
+const Transactions = lazy(() => import("pages/Transactions"));
 
 const routes = [
   {
@@ -48,7 +50,13 @@ const routes = [
     path: "/transactions",
     exact: true,
     isPrivate: true,
-    component: Pay
+    component: Transactions
+  },
+  {
+    path: "/save",
+    exact: true,
+    isPrivate: true,
+    component: Save
   },
   {
     path: "*",

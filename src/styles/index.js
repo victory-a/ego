@@ -82,6 +82,12 @@ const GlobalStyles = createGlobalStyle`
       box-shadow: 0 0 0 .8px ${colors.primary} !important;
     }
   }
+
+/* added this to enforce a fix for bug in chakra switch component color prop  */
+  input[type=checkbox]:checked + .css-yb72im, 
+  input[type=checkbox][aria-checked=mixed] + .css-yb72im  {
+    background-color: ${colors.primary} !important;
+  }
 `;
 
 export default GlobalStyles;
