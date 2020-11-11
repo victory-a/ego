@@ -2,6 +2,7 @@ import React from "react";
 import { device } from "styles";
 import styled from "styled-components";
 import { nairaFormat } from "utils/amountFormatters";
+import colors from "styles/colors";
 
 export default function NairaFormatter({ amount }) {
   return (
@@ -24,7 +25,7 @@ export function AudioMoney() {
 }
 
 const Count = styled.h3`
-  color: #333;
+  color: ${colors.darkCharcoal};
   font-size: 2.4rem;
   font-weight: bold;
 

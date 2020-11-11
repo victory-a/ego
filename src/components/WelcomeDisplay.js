@@ -6,7 +6,7 @@ export default function WelcomeDisplay({ userName }) {
 
   return (
     <>
-      <Box as="h2" fontSize="3xl">
+      <Box as="h2" fontSize="3xl" marginBottom="2rem">
         Hi {userName ?? ""}{" "}
         {time === "night" ? (
           <span role="img" aria-labelledby="night time">

@@ -3,6 +3,7 @@ import { HomeWrapper } from "./styles";
 import WelcomeDisplay from "components/WelcomeDisplay";
 import BalanceDisplay from "components/BalanceDisplay";
 import QuickActions from "components/QuickActions";
+import QuickTransactions from "components/QuickTransactions";
 import { Grid } from "@chakra-ui/core";
 
 const user = {
@@ -17,11 +18,12 @@ const Home = () => {
       <BalanceDisplay balance={user.balance} />
       <Grid
         templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
-        gridColumnGap="2rem"
+        gap="2rem"
         overflow="hidden"
+        margin="2rem 0"
       >
         <QuickActions />
-        <QuickActions />
+        <QuickTransactions />
       </Grid>
     </HomeWrapper>
   );

@@ -70,6 +70,6 @@ const Tile = styled.a`
 
   p {
     font-size: 1.4rem;
-    color: #3e3f42;
+    color: ${colors.fauxBlack};
   }
 `;

@@ -12,9 +12,7 @@ export default {
   cream: "#FAFAFA",
   cyanBlue: "#eaedf3",
   inactive: "#A0AFC0",
-  red: "red"
+  red: "red",
+  darkCharcoal: "#333",
+  ghostWhite: "#f6f6f8"
 };
-
-// "@chakra-ui/core": "^0.8.0",
-// "@emotion/core": "^10.0.28",
-// "@emotion/styled": "^10.0.27",
