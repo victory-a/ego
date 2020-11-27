@@ -1,10 +1,11 @@
 import React from "react";
 import { NavLink, Link, useLocation } from "react-router-dom";
+import { useAuth } from "contexts/AuthContext";
+import navList from "routes/navList";
+
 import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra-ui/core";
 import { IoIosLogOut } from "react-icons/io";
 import maleFB from "assets/male-fb.svg";
-
-import navList from "routes/navList";
 
 import {
   TopNavigationWrapper,
@@ -18,7 +19,7 @@ import {
 
 export function TopNav() {
   const { pathname } = useLocation();
-
+  const { logout } = useAuth();
   return (
     <TopNavigationWrapper>
       <Link to="/">
@@ -58,7 +59,7 @@ export function TopNav() {
             </Flex>
           </MenuButton>
           <MenuList borderRadius="8px" placement="bottom" border="0.5px solid #2C1338">
-            <MenuItem p="1rem">
+            <MenuItem p="1rem" onClick={logout}>
               <Box as="span" mr="0.5rem">
                 <IoIosLogOut />
               </Box>
