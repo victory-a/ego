@@ -19,7 +19,7 @@ const Home = () => {
       <Grid
         templateColumns="repeat(auto-fit, minmax(300px, 1fr))"
         gap="2rem"
-        overflow="hidden"
+        // overflow="hidden"
         margin="2rem 0"
       >
         <QuickActions />

@@ -22,6 +22,12 @@ export const InlineCardWrapper = styled(CardWrapper)`
   margin-bottom: 0;
 `;
 
+export const CardWrapperWithMargin = styled(InlineCardWrapper)`
+  @media (max-width: 699px) {
+    margin-bottom: 4rem;
+  }
+`;
+
 export const CardTitle = styled.div`
   width: 100%;
   background: ${colors.ghostWhite};
