@@ -4,6 +4,7 @@ import { Box, Link, Icon, Text } from "@chakra-ui/core";
 import { Formik, Form } from "formik";
 import { useLocation, useHistory } from "react-router-dom";
 
+import { useAuth } from "contexts/AuthContext";
 import { phoneNumberFormat } from "utils/reformatMobile";
 import { otpValidation } from "utils/validationSchema";
 import StyledButton from "components/CustomButton";
@@ -15,8 +16,11 @@ import CountdownTimer from "components/CountDown";
 const Verify = () => {
   const { push } = useHistory();
   const { state: { mobile } = {} } = useLocation();
+  const { login } = useAuth();
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    login();
+  };
 
   React.useLayoutEffect(() => {
     if (!mobile) push("/");
@@ -53,6 +57,13 @@ const Verify = () => {
             <Form>
               <Box my="8rem">
                 <TextInput label="OTP" placeholder="Enter OTP" maxLength={6} name="passcode" />
+                <p>
+                  enter <strong>123456</strong> (still in development{" "}
+                  <span role="img" aria-label="wink">
+                    😉
+                  </span>
+                  )
+                </p>
               </Box>
 
               <CountdownTimer />

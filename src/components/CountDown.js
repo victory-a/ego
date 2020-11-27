@@ -3,7 +3,7 @@ import styled from "styled-components";
 import colors from "styles/colors";
 
 const CountdownTimer = () => {
-  const [timeLeft, setTimeLeft] = React.useState(10);
+  const [timeLeft, setTimeLeft] = React.useState(30);
 
   React.useEffect(() => {
     const interval = setInterval(() => {
