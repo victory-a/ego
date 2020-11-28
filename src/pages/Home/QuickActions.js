@@ -1,5 +1,5 @@
 import React from "react";
-import { InlineCardWrapper, CardTitle } from "./ContentCard";
+import { InlineCardWrapper, CardTitle } from "./styles.js";
 import styled from "styled-components";
 import { AiFillBank } from "react-icons/ai";
 import { MdPhoneIphone, MdSubscriptions } from "react-icons/md";
