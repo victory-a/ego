@@ -12,14 +12,17 @@ import StyledButton from "components/CustomButton";
 import { FormContainer, TitleWrapper, ConfirmationWrapper } from "layout/AuthLayout/styles";
 import TextInput from "components/FormElements/TextInput";
 import CountdownTimer from "components/CountDown";
+import useCustomToast from "hooks/useCustomToast";
 
 const Verify = () => {
   const { push } = useHistory();
   const { state: { mobile } = {} } = useLocation();
   const { login } = useAuth();
+  const { doToast } = useCustomToast();
 
   const handleSubmit = () => {
     login();
+    doToast("Login Success", "You have successfully logged in");
   };
 
   React.useLayoutEffect(() => {
@@ -49,7 +52,7 @@ const Verify = () => {
         ) : null}
 
         <Formik
-          initialValues={{ mobile: "" }}
+          initialValues={{ passcode: "" }}
           onSubmit={handleSubmit}
           validationSchema={otpValidation}
         >
@@ -57,13 +60,13 @@ const Verify = () => {
             <Form>
               <Box my="8rem">
                 <TextInput label="OTP" placeholder="Enter OTP" maxLength={6} name="passcode" />
-                <p>
-                  enter <strong>123456</strong> (still in development{" "}
+                <Box as="p" textAlign="center">
+                  enter <strong>123456</strong> (Sandbox key{" "}
                   <span role="img" aria-label="wink">
                     😉
                   </span>
                   )
-                </p>
+                </Box>
               </Box>
 
               <CountdownTimer />

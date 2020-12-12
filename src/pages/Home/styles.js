@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { device } from "styles";
 import colors from "styles/colors";
 
 export const HomeWrapper = styled.section`
@@ -20,8 +19,12 @@ export const CardWrapper = styled.div`
 `;
 
 export const InlineCardWrapper = styled(CardWrapper)`
-  padding: 0 0 2.5rem 0;
+  padding: 0 0 2rem 0;
   margin-bottom: 0;
+
+  &.transactions {
+    border: 1px solid red;
+  }
 `;
 
 export const CardWrapperWithMargin = styled(InlineCardWrapper)`
@@ -45,5 +48,61 @@ export const CardTitle = styled.div`
 
   p {
     font-size: 1.2rem;
+    color: #3e3f42;
+    font-weight: bold;
+
+    &.active {
+      cursor: pointer;
+      transition: color 0.4s ease-in-out;
+
+      &:hover {
+        color: ${colors.primary};
+      }
+    }
+  }
+`;
+
+export const TransactionList = styled.ul`
+  & li {
+    transition: background-color 0.4s ease-in;
+    cursor: pointer;
+    padding: 2rem;
+
+    &:not(:last-of-type) {
+      border-bottom: 1px solid #eaedf3;
+    }
+
+    &:last-of-type {
+      padding-bottom: 0;
+    }
+
+    &:hover {
+      background: ${colors.primaryHoverLighter};
+    }
+
+    & img {
+      height: 40px;
+      width: 40px;
+    }
+
+    & h4 {
+      font-size: 1.6rem;
+      margin-bottom: 5px;
+      color: #333;
+      font-weight: bold;
+    }
+
+    & .description {
+      font-size: 1.2rem;
+    }
+
+    & .amount {
+      font-size: 14px;
+      color: #67bc5f;
+
+      &.debit {
+        color: #f1403b;
+      }
+    }
   }
 `;
