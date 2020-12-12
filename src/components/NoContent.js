@@ -24,7 +24,7 @@ const ImageWrapper = styled.div`
   svg {
     top: 0;
     margin: 1.5rem 0;
-    animation: bounce 3.5s infinite;
+    animation: bounce 3s infinite;
   }
 
   p {

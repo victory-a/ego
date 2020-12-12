@@ -6,13 +6,16 @@ import { useHistory } from "react-router-dom";
 import { getStartedValidation } from "utils/validationSchema";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
+import useCustomToast from "hooks/useCustomToast";
 
 import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
 
 const GetStarted = () => {
   const { push } = useHistory();
+  const { doToast } = useCustomToast();
   const handleSubmit = ({ mobile }) => {
     push({ pathname: "/verify", state: { mobile: mobile.replace(/-/gi, "") } });
+    doToast("OTP Sent", "Kindly check your messages for an OTP");
   };
 
   return (

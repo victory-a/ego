@@ -1,14 +1,14 @@
 import React from "react";
-import { FullCard } from "./ContentCard";
+import { CardWrapper } from "./styles.js";
 import { Box, Switch } from "@chakra-ui/core";
-import NairaFormatter, { AudioMoney } from "./NairaFormatter";
+import NairaFormatter, { AudioMoney } from "../../components/NairaFormatter";
 import { AboveTabletScreen } from "layout/viewports";
 
 const BalanceDisplay = ({ balance }) => {
   const [showBalance, setShowBalance] = React.useState(true);
 
   return (
-    <FullCard>
+    <CardWrapper>
       <Box d="flex" alignItems="center" justifyContent="space-between" mb="3rem">
         <Box as="p" color="ego.lightBrown" fontSize="12px">
           <AboveTabletScreen>AVAILABLE</AboveTabletScreen> BALANCE
@@ -23,7 +23,7 @@ const BalanceDisplay = ({ balance }) => {
       <Box height="3.5rem">
         {showBalance ? <NairaFormatter amount={balance} /> : <AudioMoney />}
       </Box>
-    </FullCard>
+    </CardWrapper>
   );
 };
 
