@@ -72,10 +72,6 @@ export const TransactionList = styled.ul`
       border-bottom: 1px solid ${colors.cyanBlue};
     }
 
-    &:last-of-type {
-      padding-bottom: 0;
-    }
-
     &:hover {
       background: ${colors.primaryHoverLighter};
     }
