@@ -5,7 +5,7 @@ import airtel from "assets/airtel.svg";
 import receive from "assets/receive.svg";
 import bankTransfer from "assets/banktransfer.svg";
 
-export const generateTitle = transaction => {
+export const generateMetadata = transaction => {
   let title;
   let description;
 

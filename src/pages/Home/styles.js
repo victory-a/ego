@@ -10,7 +10,7 @@ export const HomeWrapper = styled.section`
 export const CardWrapper = styled.div`
   width: 100%;
   margin-bottom: 2rem;
-  border: 1px solid #eaedf3;
+  border: 1px solid ${colors.cyanBlue};
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   padding: 2.5rem;
@@ -48,7 +48,7 @@ export const CardTitle = styled.div`
 
   p {
     font-size: 1.2rem;
-    color: #3e3f42;
+    color: ${colors.fauxBlack};
     font-weight: bold;
 
     &.active {
@@ -69,7 +69,7 @@ export const TransactionList = styled.ul`
     padding: 2rem;
 
     &:not(:last-of-type) {
-      border-bottom: 1px solid #eaedf3;
+      border-bottom: 1px solid ${colors.cyanBlue};
     }
 
     &:last-of-type {
@@ -81,14 +81,14 @@ export const TransactionList = styled.ul`
     }
 
     & img {
-      height: 40px;
-      width: 40px;
+      height: 4rem;
+      width: 4rem;
     }
 
     & h4 {
       font-size: 1.6rem;
-      margin-bottom: 5px;
-      color: #333;
+      margin-bottom: 0.5rem;
+      color: ${colors.darkCharcoal};
       font-weight: bold;
     }
 
@@ -97,11 +97,11 @@ export const TransactionList = styled.ul`
     }
 
     & .amount {
-      font-size: 14px;
-      color: #67bc5f;
+      font-size: 1.4rem;
+      color: ${colors.brightGreen};
 
       &.debit {
-        color: #f1403b;
+        color: ${colors.brightRed};
       }
     }
   }

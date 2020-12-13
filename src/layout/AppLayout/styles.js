@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { device } from "styles";
+import { device } from "styles";
 import colors from "styles/colors";
 
 export const AppContainer = styled.div`
@@ -18,6 +18,13 @@ export const MainContentWrapper = styled.main`
   overflow-y: scroll;
   scroll-behavior: smooth;
   padding: 0 2rem;
+
+  /* margin to prevent the floating bottom bar from covering content on mobile */
+  margin-bottom: 5.5rem;
+
+  @media ${device.tablet} {
+    magin-bottom: 0;
+  }
 `;
 
 export const TopNavContainer = styled.nav`

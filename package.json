@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
+    "dayjs": "^1.9.7",
     "emotion-theming": "^10.0.27",
     "eyowo-js": "^1.2.3",
     "formik": "^2.2.0",
