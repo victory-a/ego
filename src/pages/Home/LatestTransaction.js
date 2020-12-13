@@ -8,21 +8,24 @@ import { naira } from "utils/amountFormatters.js";
 
 import { InlineCardWrapper, CardTitle, TransactionList } from "./styles.js";
 import TransactionDetails from "./TransactionDetails.js";
+import NoContent from "components/NoContent.js";
 
 const LatestTransaction = () => {
-  // const sortedTransactions = React.useMemo(() => {
-  //   transactions.splice(0, 3).map(transaction => {
-  //     const label = generateLabel(transaction);
-  //     const result = generateTitle(transaction);
+  const [splicedTransactions, setSplicedTransactions] = React.useState([]);
+  // const [transactions] = useTransactions();
 
-  //     transaction.label = label;
-  //     transaction.title = result.title;
-  //     transaction.description = result.description;
+  React.useEffect(() => {
+    transformTransactions();
 
-  //     console.log(transaction)
-  //     return transaction;
-  //   });
-  // }, []);
+    function transformTransactions() {
+      const transformed = transactions.splice(0, 3).map(transaction => {
+        transaction.image = generateLabel(transaction);
+        transaction.metadata = generateMetadata(transaction);
+        return transaction;
+      });
+      return setSplicedTransactions(transformed);
+    }
+  }, []);
 
   return (
     <Fragment>
@@ -32,26 +35,24 @@ const LatestTransaction = () => {
           <p className="active">View more</p>
         </CardTitle>
         <TransactionList>
-          {transactions?.length > 0
-            ? transactions.map(transaction => {
-                let image = generateLabel(transaction);
-                let metadata = generateMetadata(transaction);
-                return (
-                  <Transaction
-                    {...{ transaction, image, metadata }}
-                    key={`transaction-${transaction.id}`}
-                  />
-                );
-              })
-            : null}
+          {splicedTransactions?.length > 0 ? (
+            splicedTransactions.map(transaction => {
+              return (
+                <Transaction transaction={transaction} key={`transaction-${transaction.id}`} />
+              );
+            })
+          ) : (
+            <NoContent caption="No transactions!" />
+          )}
         </TransactionList>
       </InlineCardWrapper>
     </Fragment>
   );
 };
 
-const Transaction = ({ transaction, image, metadata }) => {
+const Transaction = ({ transaction }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { image, metadata } = transaction;
 
   return (
     <Fragment>
@@ -65,7 +66,7 @@ const Transaction = ({ transaction, image, metadata }) => {
             size: { base: "90%", tablet: "80%", laptop: "550px" }
           }}
         >
-          <TransactionDetails {...{ transaction, image, metadata }} />
+          <TransactionDetails transaction={transaction} />
         </Modal>
       ) : null}
 
