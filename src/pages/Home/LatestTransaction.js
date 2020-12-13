@@ -11,7 +11,7 @@ import TransactionDetails from "./TransactionDetails.js";
 import NoContent from "components/NoContent.js";
 
 const LatestTransaction = () => {
-  const [splicedTransactions, setSplicedTransactions] = React.useState([]);
+  const [transformedTransactions, setTransformedTransactions] = React.useState([]);
   // const [transactions] = useTransactions();
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ const LatestTransaction = () => {
         transaction.metadata = generateMetadata(transaction);
         return transaction;
       });
-      return setSplicedTransactions(transformed);
+      return setTransformedTransactions(transformed);
     }
   }, []);
 
@@ -35,8 +35,8 @@ const LatestTransaction = () => {
           <p className="active">View more</p>
         </CardTitle>
         <TransactionList>
-          {splicedTransactions?.length > 0 ? (
-            splicedTransactions.map(transaction => {
+          {transformedTransactions?.length > 0 ? (
+            transformedTransactions.map(transaction => {
               return (
                 <Transaction transaction={transaction} key={`transaction-${transaction.id}`} />
               );
