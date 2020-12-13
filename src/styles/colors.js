@@ -11,9 +11,12 @@ export default {
   black: "#000",
   fauxBlack: "#3E3F42",
   cream: "#FAFAFA",
-  cyanBlue: "#eaedf3",
+  cyanBlue: "#EAEDF3",
   inactive: "#A0AFC0",
   red: "red",
   darkCharcoal: "#333",
-  ghostWhite: "#f6f6f8"
+  ghostWhite: "#f6f6f8",
+  weirdGrey: "#6E6E6E",
+  brightRed: "#F1403B",
+  brightGreen: "#67BC5F"
 };
