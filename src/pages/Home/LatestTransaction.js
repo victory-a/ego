@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 import React, { Fragment } from "react";
 import { Box, Flex, Image, useDisclosure } from "@chakra-ui/core";
+import { Link } from "react-router-dom";
 import Modal from "components/Modal";
 import { generateMetadata, generateLabel } from "utils/formatTransaction";
 import transactions from "data/transactions";
@@ -12,6 +13,8 @@ import NoContent from "components/NoContent.js";
 
 const LatestTransaction = () => {
   const [transformedTransactions, setTransformedTransactions] = React.useState([]);
+  const [current, setCurrent] = React.useState(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   // const [transactions] = useTransactions();
 
   React.useEffect(() => {
@@ -29,16 +32,39 @@ const LatestTransaction = () => {
 
   return (
     <Fragment>
+      {isOpen ? (
+        <Modal
+          {...{
+            onClose,
+            isOpen,
+            overlayClose: true,
+            title: "Transaction Details",
+            size: { base: "90%", tablet: "80%", laptop: "550px" }
+          }}
+        >
+          <TransactionDetails transaction={current} />
+        </Modal>
+      ) : null}
+
       <InlineCardWrapper>
         <CardTitle>
           <h3>Latest transaction</h3>
-          <p className="active">View more</p>
+          <Link to="/transactions">
+            <p className="active">View more</p>
+          </Link>
         </CardTitle>
         <TransactionList>
           {transformedTransactions?.length > 0 ? (
             transformedTransactions.map(transaction => {
               return (
-                <Transaction transaction={transaction} key={`transaction-${transaction.id}`} />
+                <Transaction
+                  {...{
+                    transaction,
+                    onOpen,
+                    setCurrent,
+                    key: `transaction-${transaction.id}`
+                  }}
+                />
               );
             })
           ) : (
@@ -50,27 +76,15 @@ const LatestTransaction = () => {
   );
 };
 
-const Transaction = ({ transaction }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+const Transaction = ({ transaction, onOpen, setCurrent }) => {
   const { image, metadata } = transaction;
-
+  function toggleMoreDetails() {
+    setCurrent(transaction);
+    onOpen();
+  }
   return (
     <Fragment>
-      {isOpen ? (
-        <Modal
-          {...{
-            onClose,
-            isOpen,
-            overlayClose: true,
-            title: "Transaction Details",
-            size: { base: "90%", tablet: "80%", laptop: "550px" }
-          }}
-        >
-          <TransactionDetails transaction={transaction} />
-        </Modal>
-      ) : null}
-
-      <li key={`transaction-${transaction.id}`} padding="2rem" onClick={onOpen}>
+      <li key={`transaction-${transaction.id}`} padding="2rem" onClick={toggleMoreDetails}>
         <Flex alignItems="center" justify="space-between" alt={`${transaction.category}`}>
           <Flex>
             <Image rounded="full" src={image} alt="transaction indicator" />
