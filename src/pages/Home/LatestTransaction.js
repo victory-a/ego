@@ -1,15 +1,15 @@
 /* eslint-disable indent */
 import React, { Fragment } from "react";
-import { Box, Flex, Image, useDisclosure } from "@chakra-ui/core";
+import { useDisclosure } from "@chakra-ui/core";
 import { Link } from "react-router-dom";
 import Modal from "components/Modal";
 import { generateMetadata, generateLabel } from "utils/formatTransaction";
 import transactions from "data/transactions";
-import { naira } from "utils/amountFormatters.js";
 
-import { InlineCardWrapper, CardTitle, TransactionList } from "./styles.js";
-import TransactionDetails from "./TransactionDetails.js";
+import Transaction from "components/Transaction";
+import TransactionDetails from "components/TransactionDetails.js";
 import NoContent from "components/NoContent.js";
+import { InlineCardWrapper, CardTitle, TransactionList } from "./styles.js";
 
 const LatestTransaction = () => {
   const [transformedTransactions, setTransformedTransactions] = React.useState([]);
@@ -18,9 +18,9 @@ const LatestTransaction = () => {
   // const [transactions] = useTransactions();
 
   React.useEffect(() => {
-    transformTransactions();
+    appendImageAndMetadata();
 
-    function transformTransactions() {
+    function appendImageAndMetadata() {
       const transformed = transactions.splice(0, 3).map(transaction => {
         transaction.image = generateLabel(transaction);
         transaction.metadata = generateMetadata(transaction);
@@ -72,34 +72,6 @@ const LatestTransaction = () => {
           )}
         </TransactionList>
       </InlineCardWrapper>
-    </Fragment>
-  );
-};
-
-const Transaction = ({ transaction, onOpen, setCurrent }) => {
-  const { image, metadata } = transaction;
-  function toggleMoreDetails() {
-    setCurrent(transaction);
-    onOpen();
-  }
-  return (
-    <Fragment>
-      <li key={`transaction-${transaction.id}`} padding="2rem" onClick={toggleMoreDetails}>
-        <Flex alignItems="center" justify="space-between" alt={`${transaction.category}`}>
-          <Flex>
-            <Image rounded="full" src={image} alt="transaction indicator" />
-            <Flex direction="column" marginLeft="15px">
-              <h4>{metadata.title}</h4>
-              <p className="description">{metadata.description}</p>
-            </Flex>
-          </Flex>
-          <Box>
-            <p className={`amount ${transaction.category ?? "credit"}`}>
-              {naira(transaction.amount)}
-            </p>
-          </Box>
-        </Flex>
-      </li>
     </Fragment>
   );
 };
