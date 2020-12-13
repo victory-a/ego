@@ -5,7 +5,9 @@ import styled from "styled-components";
 import colors from "styles/colors";
 import { naira } from "utils/amountFormatters.js";
 
-const TransactionDetails = ({ transaction, image, metadata }) => {
+const TransactionDetails = ({ transaction }) => {
+  const { image, metadata } = transaction;
+
   return (
     <TransactionData>
       <Flex align="center" mb="2rem">
