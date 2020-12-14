@@ -48,6 +48,7 @@ const TransactionData = styled.div`
     height: 7rem;
     width: 7rem;
     display: inline-block;
+    border-radius: 50%;
   }
 
   & h4 {

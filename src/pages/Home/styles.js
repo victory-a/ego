@@ -22,9 +22,9 @@ export const InlineCardWrapper = styled(CardWrapper)`
   padding: 0 0 2rem 0;
   margin-bottom: 0;
 
-  &.transactions {
+  /* &.transactions {
     border: 1px solid red;
-  }
+  } */
 `;
 
 export const CardWrapperWithMargin = styled(InlineCardWrapper)`
