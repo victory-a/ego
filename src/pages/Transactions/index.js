@@ -8,22 +8,38 @@ import TransactionDetails from "components/TransactionDetails.js";
 import Modal from "components/Modal";
 
 import format from "data/format";
-import { generateMetadata, generateLabel } from "utils/formatTransaction";
-import { TransactionList, TransactionsWrapper } from "./styles";
+import { appendImageAndMetadata } from "utils/formatTransaction";
+import { TransactionList, TransactionsWrapper, CardTitle } from "./styles";
+import FilterMenuSelect from "components/FilterMenuSelect";
 
 const Transactions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [filteredTransactions, setFilteredTransactions] = React.useState(transactions);
+
+  // state for to hold selected transaction to be rendered in transactions details modal
   const [current, setCurrent] = React.useState(null);
 
-  function appendImageAndMetadata(transactions) {
-    return transactions.map(transaction => {
-      transaction.image = generateLabel(transaction);
-      transaction.metadata = generateMetadata(transaction);
-      return transaction;
-    });
-  }
+  // state for drop down filter
+  const [selected, setSelected] = React.useState({
+    label: "All",
+    value: "all"
+  });
 
-  const transformedTransactions = React.useMemo(() => appendImageAndMetadata(transactions), []);
+  React.useEffect(() => {
+    let filterResults;
+    if (selected.value === "all") {
+      filterResults = transactions;
+    } else {
+      filterResults = transactions.filter(transaction => transaction.category === selected.value);
+    }
+
+    setFilteredTransactions(filterResults);
+  }, [selected]);
+
+  const transformedTransactions = React.useMemo(
+    () => appendImageAndMetadata(filteredTransactions),
+    [filteredTransactions]
+  );
   const refinedTransactions = React.useMemo(() => format(transformedTransactions), [
     transformedTransactions
   ]);
@@ -45,7 +61,10 @@ const Transactions = () => {
           </Modal>
         ) : null}
         <TransactionList>
-          <h2>Recent Transactions</h2>
+          <CardTitle>
+            <h2>Transactions</h2>
+            <FilterMenuSelect {...{ selected, setSelected }} />
+          </CardTitle>
           {refinedTransactions.map(_ => {
             const date =
               dayjs().format("DD MMMM, YYYY") === dayjs(_.date).format("DD MMMM, YYYY")
@@ -53,13 +72,13 @@ const Transactions = () => {
                 : dayjs(_.date).format("DD MMMM, YYYY");
 
             const details = _.transactions.map(transaction => (
-              <Transaction
-                {...{ transaction, onOpen, setCurrent, key: `transaction-${transaction.id}` }}
-              />
+              <ul key={`transaction-${transaction.id}`}>
+                <Transaction {...{ transaction, onOpen, setCurrent }} />
+              </ul>
             ));
 
             return (
-              <li className="transaction-group">
+              <li className="transaction-group" key={`transaction-${_.date}`}>
                 <h3>{date}</h3>
                 {details}
               </li>

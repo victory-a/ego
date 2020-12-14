@@ -1,7 +1,7 @@
 import React from "react";
 import { AiFillHome } from "react-icons/ai";
 import { IoIosWallet } from "react-icons/io";
-import { RiSafeFill } from "react-icons/ri";
+import { FaExchangeAlt } from "react-icons/fa";
 
 export default [
   {
@@ -15,8 +15,13 @@ export default [
     logo: <IoIosWallet />
   },
   {
-    path: "/save",
-    title: "Save",
-    logo: <RiSafeFill />
+    path: "/transactions",
+    title: "Transactions",
+    logo: <FaExchangeAlt />
   }
+  // {
+  //   path: "/save",
+  //   title: "Save",
+  //   logo: <RiSafeFill />
+  // }
 ];
