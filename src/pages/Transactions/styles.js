@@ -8,19 +8,38 @@ export const TransactionsWrapper = styled.div`
   box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.04);
   overflow: hidden;
   padding: 2.5rem 0;
+  padding-top: 0;
   border-radius: 10px;
   background: ${colors.white};
 `;
 
-export const TransactionList = styled.ul`
+export const CardTitle = styled.div`
+  width: 100%;
+  background: ${colors.ghostWhite};
+  padding: 0.9rem 2rem;
+  display: flex;
+  justify-content: space-between;
+
   h2 {
+    color: ${colors.primary};
+    font-weight: bold;
+    font-size: 1.6rem;
+  }
+
+  button {
+    font-size: 13px !important;
+  }
+`;
+
+export const TransactionList = styled.ul`
+  /* h2 {
     padding: 0 2rem;
     color: ${colors.primary};
     font-weight: bold;
     font-size: 1.8rem;
-  }
+  } */
 
-  & li {
+  & li, & .sudo-list {
     transition: background-color 0.4s ease-in;
     cursor: pointer;
     padding: 2rem;

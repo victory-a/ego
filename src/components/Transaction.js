@@ -10,7 +10,12 @@ const Transaction = ({ transaction, onOpen, setCurrent }) => {
   }
   return (
     <Fragment>
-      <li key={`transaction-${transaction.id}`} padding="2rem" onClick={toggleMoreDetails}>
+      <li
+        className="sudo-list"
+        key={`transaction-${transaction.id}`}
+        padding="2rem"
+        onClick={toggleMoreDetails}
+      >
         <Flex alignItems="center" justify="space-between" alt={`${transaction.category}`}>
           <Flex>
             <Image rounded="full" src={image} alt="transaction indicator" />

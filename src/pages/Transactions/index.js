@@ -9,11 +9,20 @@ import Modal from "components/Modal";
 
 import format from "data/format";
 import { generateMetadata, generateLabel } from "utils/formatTransaction";
-import { TransactionList, TransactionsWrapper } from "./styles";
+import { TransactionList, TransactionsWrapper, CardTitle } from "./styles";
+import FilterMenuSelect from "components/FilterMenuSelect";
 
 const Transactions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  // state for to hold selected transaction to be rendered in transactions details modal
   const [current, setCurrent] = React.useState(null);
+
+  // state for drop down filter
+  const [selected, setSelected] = React.useState({
+    label: "All",
+    value: "all"
+  });
 
   function appendImageAndMetadata(transactions) {
     return transactions.map(transaction => {
@@ -45,7 +54,10 @@ const Transactions = () => {
           </Modal>
         ) : null}
         <TransactionList>
-          <h2>Recent Transactions</h2>
+          <CardTitle>
+            <h2>Transactions</h2>
+            {/* <FilterMenuSelect {...{ selected, setSelected }} /> */}
+          </CardTitle>
           {refinedTransactions.map(_ => {
             const date =
               dayjs().format("DD MMMM, YYYY") === dayjs(_.date).format("DD MMMM, YYYY")
@@ -59,7 +71,7 @@ const Transactions = () => {
             ));
 
             return (
-              <li className="transaction-group">
+              <li className="transaction-group" key={`transaction-${_.date}`}>
                 <h3>{date}</h3>
                 {details}
               </li>
