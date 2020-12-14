@@ -8,12 +8,13 @@ import TransactionDetails from "components/TransactionDetails.js";
 import Modal from "components/Modal";
 
 import format from "data/format";
-import { generateMetadata, generateLabel } from "utils/formatTransaction";
+import { appendImageAndMetadata } from "utils/formatTransaction";
 import { TransactionList, TransactionsWrapper, CardTitle } from "./styles";
 import FilterMenuSelect from "components/FilterMenuSelect";
 
 const Transactions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [filteredTransactions, setFilteredTransactions] = React.useState(transactions);
 
   // state for to hold selected transaction to be rendered in transactions details modal
   const [current, setCurrent] = React.useState(null);
@@ -24,15 +25,21 @@ const Transactions = () => {
     value: "all"
   });
 
-  function appendImageAndMetadata(transactions) {
-    return transactions.map(transaction => {
-      transaction.image = generateLabel(transaction);
-      transaction.metadata = generateMetadata(transaction);
-      return transaction;
-    });
-  }
+  React.useEffect(() => {
+    let filterResults;
+    if (selected.value === "all") {
+      filterResults = transactions;
+    } else {
+      filterResults = transactions.filter(transaction => transaction.category === selected.value);
+    }
 
-  const transformedTransactions = React.useMemo(() => appendImageAndMetadata(transactions), []);
+    setFilteredTransactions(filterResults);
+  }, [selected]);
+
+  const transformedTransactions = React.useMemo(
+    () => appendImageAndMetadata(filteredTransactions),
+    [filteredTransactions]
+  );
   const refinedTransactions = React.useMemo(() => format(transformedTransactions), [
     transformedTransactions
   ]);
@@ -56,7 +63,7 @@ const Transactions = () => {
         <TransactionList>
           <CardTitle>
             <h2>Transactions</h2>
-            {/* <FilterMenuSelect {...{ selected, setSelected }} /> */}
+            <FilterMenuSelect {...{ selected, setSelected }} />
           </CardTitle>
           {refinedTransactions.map(_ => {
             const date =
@@ -65,9 +72,9 @@ const Transactions = () => {
                 : dayjs(_.date).format("DD MMMM, YYYY");
 
             const details = _.transactions.map(transaction => (
-              <Transaction
-                {...{ transaction, onOpen, setCurrent, key: `transaction-${transaction.id}` }}
-              />
+              <ul key={`transaction-${transaction.id}`}>
+                <Transaction {...{ transaction, onOpen, setCurrent }} />
+              </ul>
             ));
 
             return (

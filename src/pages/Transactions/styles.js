@@ -39,7 +39,7 @@ export const TransactionList = styled.ul`
     font-size: 1.8rem;
   } */
 
-  & li, & .sudo-list {
+  & li {
     transition: background-color 0.4s ease-in;
     cursor: pointer;
     padding: 2rem;

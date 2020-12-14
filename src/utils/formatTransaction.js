@@ -47,3 +47,11 @@ export const generateLabel = transaction => {
   }
   return image;
 };
+
+export function appendImageAndMetadata(transactions) {
+  return transactions.map(transaction => {
+    transaction.image = generateLabel(transaction);
+    transaction.metadata = generateMetadata(transaction);
+    return transaction;
+  });
+}
