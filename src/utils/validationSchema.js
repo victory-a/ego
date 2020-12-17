@@ -12,10 +12,27 @@ const mobileValidation = Yup.string()
     }
   });
 
+const amountValidation = Yup.number()
+  .required("Amount is required")
+  .min(1, "should be greater than zero")
+  .max(100000, "limit is 100k");
+
+const randomText = Yup.string().max(255, "limit is 255 characters");
+
 export const getStartedValidation = Yup.object().shape({
   mobile: mobileValidation
 });
 
 export const otpValidation = Yup.object().shape({
   passcode: Yup.string().required("OTP is required.")
+});
+
+export const sendToPhoneSchema = Yup.object().shape({
+  recipients: Yup.array().of(
+    Yup.object().shape({
+      amount: amountValidation,
+      mobile: mobileValidation,
+      remark: randomText
+    })
+  )
 });

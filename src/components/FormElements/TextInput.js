@@ -8,7 +8,7 @@ export default function TextInput(props) {
 
   return (
     <FormControl mb="1.5rem" isInvalid={Boolean(meta.touched && meta.error)}>
-      <FormLabel htmlFor={name}>{label}</FormLabel>
+      {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
 
       <Input name={name} type={type} {...field} {...props} />
 

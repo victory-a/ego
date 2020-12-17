@@ -47,7 +47,7 @@ const GetStarted = () => {
                   Ensure you have access to this number.
                 </Box>
               </Box>
-              <StyledButton width="full" isLoading={false} type="submit">
+              <StyledButton width="full" type="submit">
                 Get Started
               </StyledButton>
             </Form>
