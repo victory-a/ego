@@ -39,12 +39,7 @@ const CustomModal = ({
           <ModalOverlay bg="rgba(99,99,98, .8)" />
           <ModalContent borderRadius={type === "padded" ? 12 : 0}>
             {showCloseBtn && (
-              <CloseButton
-                type="button"
-                onClick={onClose}
-                aria-label="Close Modal"
-                aria-labelledby="close-modal"
-              >
+              <CloseButton type="button" onClick={onClose} aria-label="close modal">
                 <IoIosClose size={27} />
               </CloseButton>
             )}

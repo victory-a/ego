@@ -9,7 +9,7 @@ export default function PhoneNumberInput(props) {
 
   return (
     <FormControl mb="1rem" isInvalid={Boolean(meta.touched && meta.error)}>
-      <FormLabel htmlFor={name}>{label}</FormLabel>
+      {label ? <FormLabel htmlFor={name}>{label}</FormLabel> : null}
 
       <NumberFormat
         type="tel"

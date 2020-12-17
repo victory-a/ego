@@ -71,7 +71,7 @@ const Verify = () => {
 
               <CountdownTimer />
 
-              <StyledButton width="full" isLoading={false} type="submit">
+              <StyledButton width="full" type="submit">
                 Continue
               </StyledButton>
             </Form>
