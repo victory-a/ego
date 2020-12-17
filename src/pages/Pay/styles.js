@@ -19,7 +19,7 @@ export const TabWrapper = styled.div`
   padding: 2.5rem;
 
   & > p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 2.5rem;
     color: ${colors.fauxBlack};

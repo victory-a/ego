@@ -26,18 +26,17 @@ const tabOptions2 = [
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
-  const [activeTabIndex, setActiveTabIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(0);
 
   const { search } = useLocation();
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     const queryParam = search.split("=")[1];
     if (queryParam) {
-      setActiveTabIndex(queryParam);
+      setTabIndex(queryParam);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
   return (
     <Wrapper>
       <Tabs
@@ -45,7 +44,9 @@ const Pay = () => {
         paddingX="5px"
         // variantColor="ego.red"
         isFitted={smallScreens ? true : false}
-        defaultIndex={activeTabIndex}
+        // defaultIndex={activeTabIndex}
+        index={tabIndex}
+        onChange={index => setTabIndex(index)}
       >
         <TabList>
           {smallScreens
