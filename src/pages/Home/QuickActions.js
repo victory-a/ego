@@ -8,11 +8,12 @@ import colors from "styles/colors";
 import { Grid } from "@chakra-ui/core";
 
 const actions = [
-  { title: "Send to Phone", link: "", logo: <MdPhoneIphone /> },
-  { title: "Send to bank", link: "", logo: <AiFillBank /> },
-  { title: "Buy airtime", link: "", logo: <RiBillFill /> },
-  { title: "Pay bills", link: "", logo: <MdSubscriptions /> }
+  { title: "Send to Phone", link: "/pay?tab=0", logo: <MdPhoneIphone /> },
+  { title: "Send to bank", link: "/pay?tab=1", logo: <AiFillBank /> },
+  { title: "Buy airtime", link: "/pay?tab=2", logo: <RiBillFill /> },
+  { title: "Pay bills", link: "/pay?tab=3", logo: <MdSubscriptions /> }
 ];
+
 const QuickActions = () => {
   return (
     <InlineCardWrapper>
