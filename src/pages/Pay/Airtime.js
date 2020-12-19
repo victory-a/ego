@@ -18,12 +18,16 @@ import { buyAirtimeSchema } from "utils/validationSchema";
 import { normalizeMobile } from "utils/reformatMobile";
 
 const vendors = [
-  { icon: Male, value: "user" },
   { icon: Mtn, value: "mtn" },
   { icon: Glo, value: "glo" },
   { icon: Airtel, value: "airtel" },
   { icon: NineMobile, value: "NineMobile" }
 ];
+
+const selfObject = {
+  icon: Male,
+  value: "user"
+};
 
 const user = {
   mobile: "08012345678"
@@ -66,6 +70,13 @@ const Airtime = () => {
         {({ isSubmitting, setFieldValue }) => (
           <>
             <VendorArray>
+              <button
+                className={`self vendor ${selected === selfObject.value ? "active" : ""}`}
+                onClick={() => handleTelcoSelect(selfObject.value, setFieldValue)}
+                arialabel={`${selfObject.value} airtime vendor`}
+              >
+                <img src={selfObject.icon} alt="male icon" />
+              </button>
               {vendors.map(({ icon, value }, i) => (
                 <button
                   className={`vendor ${selected === value ? "active" : ""}`}
