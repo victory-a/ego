@@ -1,5 +1,7 @@
+/* eslint-disable indent */
 import React from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/core";
+import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import Phone from "./Phone";
@@ -25,14 +27,28 @@ const tabOptions2 = [
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
+  const [tabIndex, setTabIndex] = React.useState(3);
+
+  const { search } = useLocation();
+
+  React.useLayoutEffect(() => {
+    const queryParam = search.split("=")[1];
+    if (queryParam) {
+      setTabIndex(queryParam);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Wrapper>
       <Tabs
         outline="none !important"
         paddingX="5px"
-        variantColor="ego.red"
+        // variantColor="ego.red"
         isFitted={smallScreens ? true : false}
+        defaultIndex={tabIndex}
+        // index={tabIndex}
+        // onChange={index => setTabIndex(index)}
       >
         <TabList>
           {smallScreens

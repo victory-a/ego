@@ -41,10 +41,6 @@ const GlobalStyles = createGlobalStyle`
     background-color: ${colors.cream};
   }
 
-  input {
-    padding: 2rem !important;
-  }
-
   button {
     font-size: 1.6rem !important;
 
@@ -54,12 +50,6 @@ const GlobalStyles = createGlobalStyle`
         background-color: ${colors.primaryHoverLight} !important;
       }
     }
-  }
-
-  input {
-    font-size: 1.4rem !important;
-    background-color: ${colors.froastedWhite} !important;
-    color: ${colors.primary} !important;
   }
 
   label {
@@ -76,6 +66,11 @@ const GlobalStyles = createGlobalStyle`
   }
 
   input {
+    font-size: 1.4rem !important;
+    background-color: ${colors.froastedWhite} !important;
+    color: ${colors.primary} !important;
+    padding: 2rem !important;
+
     :focus {
       border: 1px solid ${colors.primary} !important;
       outline: none;

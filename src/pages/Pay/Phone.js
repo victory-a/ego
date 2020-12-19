@@ -13,6 +13,8 @@ import { TabWrapper, ButtonWrapper } from "./styles";
 const Phone = () => {
   const receipentObj = { amount: "", mobile: "", remark: "" };
   const handleSubmit = (values, setSubmitting) => {
+    // console.log(values);
+
     setSubmitting(false);
   };
 

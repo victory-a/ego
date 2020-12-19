@@ -5,7 +5,7 @@ import { Formik, Form } from "formik";
 import { useLocation, useHistory } from "react-router-dom";
 
 import { useAuth } from "contexts/AuthContext";
-import { phoneNumberFormat } from "utils/reformatMobile";
+import { phoneCountryCodeFormat } from "utils/reformatMobile";
 import { otpValidation } from "utils/validationSchema";
 import StyledButton from "components/CustomButton";
 
@@ -47,7 +47,8 @@ const Verify = () => {
 
         {mobile ? (
           <ConfirmationWrapper>
-            Enter the 6-digit confirmation code sent to <br /> +{phoneNumberFormat(mobile)} via SMS.
+            Enter the 6-digit confirmation code sent to <br /> +{phoneCountryCodeFormat(mobile)} via
+            SMS.
           </ConfirmationWrapper>
         ) : null}
 

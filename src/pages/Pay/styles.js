@@ -15,14 +15,20 @@ export const Wrapper = styled.div`
   background: ${colors.white};
 `;
 
-export const TabWrapper = styled.div`
+export const TabWrapper = styled.section`
   padding: 2.5rem;
 
   & > p {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: bold;
     margin-bottom: 2.5rem;
     color: ${colors.fauxBlack};
+    vertical-align: middle;
+
+    svg {
+      display: inline;
+      margin-right: 3px;
+    }
   }
 
   & .inline-fields {
@@ -65,5 +71,37 @@ export const ButtonWrapper = styled.div`
 
   & button {
     width: 100% !important;
+  }
+`;
+
+export const VendorArray = styled.div`
+  padding-bottom: 3rem;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  & .vendor {
+    border: 3px solid transparent;
+    border-radius: 5px;
+    width: 5rem;
+    height: 5rem;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border: 0.5px solid transparent;
+
+    &:not(:last-of-type) {
+      margin-right: 1.5rem;
+    }
+
+    img {
+      padding: 1px;
+      width: 100%;
+      height: 100%;
+    }
+
+    &.active {
+      border: 0.5px solid ${colors.primary};
+      background: ${colors.primaryHoverLighter};
+    }
   }
 `;
