@@ -14,7 +14,7 @@ export const reformatMobile = number => {
   return formatted;
 };
 
-export const phoneNumberFormat = number => {
+export const phoneCountryCodeFormat = number => {
   let formatted;
 
   if (number[0] === "0") {
@@ -25,3 +25,5 @@ export const phoneNumberFormat = number => {
     return formatted;
   }
 };
+
+export const normalizeMobile = number => number.replace(/-/gi, "");

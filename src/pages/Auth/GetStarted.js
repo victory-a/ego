@@ -9,12 +9,13 @@ import StyledButton from "components/CustomButton";
 import useCustomToast from "hooks/useCustomToast";
 
 import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
+import { normalizeMobile } from "utils/reformatMobile";
 
 const GetStarted = () => {
   const { push } = useHistory();
   const { doToast } = useCustomToast();
   const handleSubmit = ({ mobile }) => {
-    push({ pathname: "/verify", state: { mobile: mobile.replace(/-/gi, "") } });
+    push({ pathname: "/verify", state: { mobile: normalizeMobile(mobile) } });
     doToast("OTP Sent", "Kindly check your messages for an OTP");
   };
 

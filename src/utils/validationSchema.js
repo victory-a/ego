@@ -36,3 +36,8 @@ export const sendToPhoneSchema = Yup.object().shape({
     })
   )
 });
+
+export const buyAirtimeSchema = Yup.object().shape({
+  amount: amountValidation,
+  mobile: mobileValidation
+});

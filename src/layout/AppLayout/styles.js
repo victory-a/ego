@@ -56,3 +56,20 @@ export const BottomNavContainer = styled.footer`
   box-shadow: 0px 1.0566px 10.566px rgba(0, 0, 0, 0.04);
   z-index: 400;
 `;
+
+export const InlineFields = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+
+    > div {
+      width: 100%;
+    }
+
+    div:first-child {
+      margin-right: 4%;
+    }
+  }
+`;
