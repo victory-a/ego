@@ -87,7 +87,8 @@ export const VendorArray = styled.div`
     height: 5rem;
     margin-bottom: 10px;
     cursor: pointer;
-    border: 0.5px solid transparent;
+    /* border: 0.5px solid transparent; */
+    border: 0.5px solid ${colors.primaryHoverLighter};
 
     &:not(:last-of-type) {
       margin-right: 1.5rem;
@@ -97,11 +98,31 @@ export const VendorArray = styled.div`
       padding: 1px;
       width: 100%;
       height: 100%;
+      border: none;
     }
 
     &.active {
       border: 0.5px solid ${colors.primary};
       background: ${colors.primaryHoverLighter};
+    }
+  }
+
+  & button.self {
+    position: relative;
+    border: 0.5px solid ${colors.primaryHoverLight};
+
+    &::after {
+      content: "Self";
+      position: absolute;
+      text-align: center;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      color: ${colors.white};
+      font-size: 10px;
+      background: rgba(44, 19, 56, 0.8);
+
+      width: 100%;
     }
   }
 `;

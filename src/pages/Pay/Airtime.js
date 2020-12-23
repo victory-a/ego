@@ -6,16 +6,19 @@ import TextInput from "components/FormElements/TextInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
 
-import { TabWrapper, VendorArray, ButtonWrapper } from "./styles";
+// import AmountInput from "components/FormElements/AmountInput";
+
 import { InlineFields } from "layout/AppLayout/styles";
+import { TabWrapper, VendorArray, ButtonWrapper } from "./styles";
+
+import { normalizeMobile } from "utils/formatNumber";
+import { buyAirtimeSchema } from "utils/validationSchema";
 
 import Mtn from "assets/mtn.svg";
 import NineMobile from "assets/9mobile.svg";
 import Glo from "assets/glo.svg";
 import Airtel from "assets/airtel.svg";
 import Male from "assets/male-fb.svg";
-import { buyAirtimeSchema } from "utils/validationSchema";
-import { normalizeMobile } from "utils/reformatMobile";
 
 const vendors = [
   { icon: Mtn, value: "mtn" },
@@ -77,6 +80,7 @@ const Airtime = () => {
               >
                 <img src={selfObject.icon} alt="male icon" />
               </button>
+
               {vendors.map(({ icon, value }, i) => (
                 <button
                   className={`vendor ${selected === value ? "active" : ""}`}
@@ -91,6 +95,7 @@ const Airtime = () => {
             <Form>
               <InlineFields>
                 <TextInput placeholder="Amount" type="number" name="amount" />
+                {/* <AmountInput placeholder="Amount" type="number" name="amount" /> */}
                 <PhoneNumberInput name="mobile" placeholder="Phone number" />
               </InlineFields>
               <ButtonWrapper>

@@ -1,22 +1,37 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { ReactQueryDevtools } from "react-query-devtools";
+import { ReactQueryConfigProvider } from "react-query";
 import GlobalStyles from "styles";
 import styles from "styles/theme";
 import App from "./App";
 import { ThemeProvider, CSSReset } from "@chakra-ui/core";
 import AuthProvider from "contexts/AuthContext";
 
+const queryConfig = {
+  queries: {
+    retry: 0,
+    throwOnError: false,
+    useErrorBoundary: false,
+    refetchOnWindowFocus: false
+  }
+};
+
 ReactDOM.render(
   <>
-    <GlobalStyles />
+    <ReactQueryDevtools initialIsOpen={false} />
 
-    <ThemeProvider theme={styles}>
-      <CSSReset />
+    <ReactQueryConfigProvider config={queryConfig}>
+      <GlobalStyles />
 
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </ThemeProvider>
+      <ThemeProvider theme={styles}>
+        <CSSReset />
+
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </ThemeProvider>
+    </ReactQueryConfigProvider>
   </>,
   document.getElementById("root")
 );

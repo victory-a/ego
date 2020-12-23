@@ -65,7 +65,7 @@ const GlobalStyles = createGlobalStyle`
     list-style-type: none;
   }
 
-  input {
+  input, select {
     font-size: 1.4rem !important;
     background-color: ${colors.froastedWhite} !important;
     color: ${colors.primary} !important;
@@ -76,6 +76,11 @@ const GlobalStyles = createGlobalStyle`
       outline: none;
       box-shadow: 0 0 0 .8px ${colors.primary} !important;
     }
+  }
+
+  select {
+    padding: 0 2rem !important;
+    height: 42px !important;
   }
 
 /* added this to enforce a fix for bug in chakra switch component color prop  */

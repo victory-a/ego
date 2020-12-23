@@ -13,9 +13,9 @@ import { Wrapper } from "./styles";
 
 const tabOptions = [
   { label: "Send to Phone", content: Phone },
-  { label: "Buy Airtime", content: Airtime },
   { label: "Send to Bank", content: Bank },
-  { label: "Pay Bills", content: Bills }
+  { label: "Pay Bills", content: Bills },
+  { label: "Buy Airtime", content: Airtime }
 ];
 
 const tabOptions2 = [
