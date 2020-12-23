@@ -27,3 +27,5 @@ export const phoneCountryCodeFormat = number => {
 };
 
 export const normalizeMobile = number => number.replace(/-/gi, "");
+
+export const reformatNaira = amount => amount.replace(/₦/gi, "");

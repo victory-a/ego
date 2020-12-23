@@ -17,7 +17,17 @@ const amountValidation = Yup.number()
   .min(1, "should be greater than zero")
   .max(100000, "limit is 100k");
 
+export const accountValidation = Yup.number()
+  .required("Please enter your bank account number")
+  .test("len", "Must be exactly 10 characters", val => {
+    if (val !== undefined) {
+      return val !== undefined && val.toString().length === 10;
+    }
+  });
+
 const randomText = Yup.string().max(255, "limit is 255 characters");
+
+const bankValidation = Yup.string().required("Select a bank");
 
 export const getStartedValidation = Yup.object().shape({
   mobile: mobileValidation
@@ -40,4 +50,11 @@ export const sendToPhoneSchema = Yup.object().shape({
 export const buyAirtimeSchema = Yup.object().shape({
   amount: amountValidation,
   mobile: mobileValidation
+});
+
+export const sendToBankSchema = Yup.object().shape({
+  amount: amountValidation,
+  bank: bankValidation,
+  accountNumber: accountValidation,
+  narration: randomText
 });

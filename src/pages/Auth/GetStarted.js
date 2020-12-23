@@ -9,7 +9,7 @@ import StyledButton from "components/CustomButton";
 import useCustomToast from "hooks/useCustomToast";
 
 import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
-import { normalizeMobile } from "utils/reformatMobile";
+import { normalizeMobile } from "utils/formatNumber";
 
 const GetStarted = () => {
   const { push } = useHistory();

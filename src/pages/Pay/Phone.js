@@ -2,6 +2,7 @@ import React from "react";
 import { Formik, Form, FieldArray } from "formik";
 import { MdAddBox, MdClose } from "react-icons/md";
 
+// import AmountInput from "components/FormElements/AmountInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
@@ -14,7 +15,6 @@ const Phone = () => {
   const receipentObj = { amount: "", mobile: "", remark: "" };
   const handleSubmit = (values, setSubmitting) => {
     // console.log(values);
-
     setSubmitting(false);
   };
 
@@ -34,11 +34,17 @@ const Phone = () => {
                   {values?.recipients?.length > 0 &&
                     values.recipients.map((_, i) => (
                       <div className="inline-fields" key={`recipients-${i}`}>
+                        {/* <AmountInput
+                          placeholder="Amount"
+                          // type="number"
+                          name={`recipients.${i}.amount`}
+                        /> */}
                         <TextInput
                           placeholder="Amount"
                           type="number"
                           name={`recipients.${i}.amount`}
                         />
+
                         <PhoneNumberInput
                           name={`recipients.${i}.mobile`}
                           placeholder="Phone number"
