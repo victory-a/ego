@@ -5,6 +5,28 @@ import airtel from "assets/airtel.svg";
 import receive from "assets/receive.svg";
 import bankTransfer from "assets/banktransfer.svg";
 
+export function transformByDates(transactions) {
+  const updatedTransactions = transactions.reduce((acc, transaction) => {
+    // returns an object with the form { <date>: [transactions]}
+    const date = transaction.createdAt.split("T")[0];
+
+    if (!acc[date]) acc[date] = [];
+    acc[date].push(transaction);
+
+    return acc;
+  }, {});
+
+  return Object.keys(updatedTransactions).map(date => {
+    // returns an array of objects with the form { date: "", transactions: []}
+    const transactions = updatedTransactions[date];
+
+    return {
+      date,
+      transactions
+    };
+  });
+}
+
 export const generateMetadata = transaction => {
   let title;
   let description;
