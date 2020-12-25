@@ -15,7 +15,7 @@ const BalanceDisplay = ({ balance }) => {
         </Box>
         <Box as="span" d="flex">
           <Box as="p" mr="1rem">
-            Show <AboveTabletScreen>balance</AboveTabletScreen>
+            {!showBalance ? "Show" : "Hide"} <AboveTabletScreen>balance</AboveTabletScreen>
           </Box>
           <Switch size="lg" value={showBalance} onChange={() => setShowBalance(!showBalance)} />
         </Box>

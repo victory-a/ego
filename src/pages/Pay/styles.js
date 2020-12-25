@@ -126,3 +126,21 @@ export const VendorArray = styled.div`
     }
   }
 `;
+
+export const SavedBanksWrapper = styled.ul`
+  display: flex;
+  overflow-y: scroll;
+  padding-bottom: 25px;
+
+  & span {
+    svg {
+      border-radius: 50%;
+      cursor: pointer;
+
+      &:hover {
+        background: ${colors.primaryHoverLighter};
+      }
+    }
+  }
+  /* } */
+`;

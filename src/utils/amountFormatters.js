@@ -17,13 +17,6 @@ export function thousandFormat(x) {
   return formatted;
 }
 
-export function naira(number) {
-  return new Intl.NumberFormat("en-NG", {
-    style: "currency",
-    currency: "NGN"
-  }).format(Number(number));
-}
-
 export function nairaFormat(number) {
   const value = Number(number).toFixed(2);
   const [naira, kobo] = value.split(".");
@@ -31,27 +24,33 @@ export function nairaFormat(number) {
   return { naira: thousandFormat(naira), kobo: `.${kobo}` };
 }
 
-export const kFormatter = x => {
-  if (isNaN(x)) return x;
+export function naira(number) {
+  return new Intl.NumberFormat("en-NG", {
+    style: "currency",
+    currency: "NGN"
+  }).format(Number(number));
+}
+// export const kFormatter = x => {
+//   if (isNaN(x)) return x;
 
-  if (x < 9999) {
-    return x;
-  }
+//   if (x < 9999) {
+//     return x;
+//   }
 
-  if (x < 1000000) {
-    return (x / 1000).toFixed(2) + "K";
-  }
-  if (x < 10000000) {
-    return (x / 1000000).toFixed(2) + "M";
-  }
+//   if (x < 1000000) {
+//     return (x / 1000).toFixed(2) + "K";
+//   }
+//   if (x < 10000000) {
+//     return (x / 1000000).toFixed(2) + "M";
+//   }
 
-  if (x < 1000000000) {
-    return Math.round(x / 1000000).toFixed(2) + "M";
-  }
+//   if (x < 1000000000) {
+//     return Math.round(x / 1000000).toFixed(2) + "M";
+//   }
 
-  if (x < 1000000000000) {
-    return Math.round(x / 1000000000) + "B";
-  }
+//   if (x < 1000000000000) {
+//     return Math.round(x / 1000000000) + "B";
+//   }
 
-  return "1T+";
-};
+//   return "1T+";
+// };
