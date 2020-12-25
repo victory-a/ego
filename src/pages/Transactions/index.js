@@ -7,8 +7,7 @@ import Transaction from "components/Transaction";
 import TransactionDetails from "components/TransactionDetails.js";
 import Modal from "components/Modal";
 
-import format from "data/format";
-import { appendImageAndMetadata } from "utils/formatTransaction";
+import { appendImageAndMetadata, transformByDates } from "utils/formatTransaction";
 import { TransactionList, TransactionsWrapper, CardTitle } from "./styles";
 import FilterMenuSelect from "components/FilterMenuSelect";
 
@@ -40,7 +39,7 @@ const Transactions = () => {
     () => appendImageAndMetadata(filteredTransactions),
     [filteredTransactions]
   );
-  const refinedTransactions = React.useMemo(() => format(transformedTransactions), [
+  const refinedTransactions = React.useMemo(() => transformByDates(transformedTransactions), [
     transformedTransactions
   ]);
 

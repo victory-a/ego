@@ -27,7 +27,7 @@ const tabOptions2 = [
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
-  const [tabIndex, setTabIndex] = React.useState(0);
+  const [tabIndex, setTabIndex] = React.useState(1);
 
   const { search } = useLocation();
 

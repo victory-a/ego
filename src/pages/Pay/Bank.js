@@ -4,15 +4,19 @@ import { Formik, Form } from "formik";
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
 
-import { TabWrapper, ButtonWrapper } from "./styles";
+import { TabWrapper, ButtonWrapper, SavedBanksWrapper } from "./styles";
 import { InlineFields } from "layout/AppLayout/styles";
 
 import { sendToBankSchema } from "utils/validationSchema";
 import SelectInput from "components/FormElements/SelectInput";
 import useBanks from "lib/queries/banks";
+import BankAccountCard from "components/BankAccountCard";
+import savedAccounts from "data/savedAccounts";
 
 const Bank = () => {
   const [banks, setBanks] = React.useState([]);
+  const [beneficiaries, setBeneficiaries] = React.useState([]);
+
   const { status, data } = useBanks();
 
   React.useEffect(() => {
@@ -21,14 +25,27 @@ const Bank = () => {
     }
   }, [data, status]);
 
+  React.useEffect(() => {
+    setBeneficiaries(savedAccounts);
+  }, []);
+
   const handleSubmit = (values, setSubmitting) => {
     // console.log(values);
-
     setSubmitting(false);
   };
 
   return (
     <TabWrapper>
+      <p>Saved bank account:</p>
+
+      {beneficiaries.length > 0 ? (
+        <SavedBanksWrapper>
+          {beneficiaries.map((beneficiary, i) => (
+            <BankAccountCard beneficiary={beneficiary} key={`beneficiary-${i}`} />
+          ))}
+        </SavedBanksWrapper>
+      ) : null}
+
       <p>Enter Details</p>
       <Formik
         initialValues={{ amount: "", bank: "", accountNumber: "", narration: "" }}
