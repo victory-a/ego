@@ -65,6 +65,7 @@ const GlobalStyles = createGlobalStyle`
     list-style-type: none;
   }
 
+/* override chakra-ui default input and select styles */
   input, select {
     font-size: 1.4rem !important;
     background-color: ${colors.froastedWhite} !important;
@@ -87,6 +88,15 @@ const GlobalStyles = createGlobalStyle`
   input[type=checkbox]:checked + .css-yb72im, 
   input[type=checkbox][aria-checked=mixed] + .css-yb72im  {
     background-color: ${colors.primary} !important;
+  }
+
+/* override chakra-ui default active tab select styles */
+  .css-rx7lgw:focus {
+    box-shadow: 0 0 0 3px transparent !important;
+  }
+
+  .css-rx7lgw[aria-selected=true] {
+    color: ${colors.primary} !important;
   }
 `;
 
