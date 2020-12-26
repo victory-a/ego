@@ -3,7 +3,7 @@ import appendBankImage from "utils/appendBankImage";
 import { Box, Flex, Image } from "@chakra-ui/core";
 import { IoIosClose } from "react-icons/io";
 
-const BankAccountCard = ({ beneficiary }) => {
+const BankAccountCard = ({ beneficiary, selected, ...props }) => {
   beneficiary.image = appendBankImage(beneficiary);
   const { image, accountNumber, bank, accountName } = beneficiary;
 
@@ -16,6 +16,9 @@ const BankAccountCard = ({ beneficiary }) => {
       p="2rem"
       minWidth="280px"
       marginRight="20px"
+      cursor="pointer"
+      className={`${selected ? "active" : ""}`}
+      {...props}
     >
       <Flex mb="20px" justify="space-between">
         <Image rounded="full" size="40px" src={image} alt={bank} />

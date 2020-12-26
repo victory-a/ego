@@ -74,13 +74,13 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const VendorArray = styled.div`
+export const SubscriberArray = styled.div`
   padding-bottom: 3rem;
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 
-  & .vendor {
+  & .subscriber {
     border: 3px solid transparent;
     border-radius: 5px;
     width: 5rem;
@@ -141,6 +141,11 @@ export const SavedBanksWrapper = styled.ul`
         background: ${colors.primaryHoverLighter};
       }
     }
+  }
+
+  & li.active {
+    border: 0.5px solid ${colors.primary} !important;
+    background: ${colors.primaryHoverLighter} !important;
   }
   /* } */
 `;

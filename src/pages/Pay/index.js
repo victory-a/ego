@@ -14,82 +14,78 @@ import { Wrapper } from "./styles";
 const tabOptions = [
   { label: "Send to Phone", content: Phone },
   { label: "Send to Bank", content: Bank },
-  { label: "Pay Bills", content: Bills },
-  { label: "Buy Airtime", content: Airtime }
+  { label: "Buy Airtime", content: Airtime },
+  { label: "Pay Bills", content: Bills }
 ];
 
 const tabOptions2 = [
   { label: "Phone", content: Phone },
   { label: "Bank", content: Bank },
-  { label: "Bills", content: Bills },
-  { label: "Airtime", content: Airtime }
+  { label: "Airtime", content: Airtime },
+  { label: "Bills", content: Bills }
 ];
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
-  const [tabIndex, setTabIndex] = React.useState(1);
+  const [currentTab, setCurrentTab] = React.useState(null);
 
-  const { search } = useLocation();
+  const urlParams = new URLSearchParams(window.location.search);
+  const tab = urlParams.get("tab");
 
-  React.useLayoutEffect(() => {
-    const queryParam = search.split("=")[1];
-    if (queryParam) {
-      setTabIndex(queryParam);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  React.useEffect(() => {
+    setCurrentTab(Number(tab));
+  }, [tab]);
 
   return (
     <Wrapper>
-      <Tabs
-        outline="none !important"
-        paddingX="5px"
-        // variantColor="ego.red"
-        isFitted={smallScreens ? true : false}
-        defaultIndex={tabIndex}
-        // index={tabIndex}
-        // onChange={index => setTabIndex(index)}
-      >
-        <TabList>
-          {smallScreens
-            ? tabOptions2.map((tab, i) => (
-                <Tab
-                  padding="1.3rem"
-                  fontSize="1.4rem !important"
-                  fontWeight="bold"
-                  borderBottomWidth="1px"
-                  // color="ego.primary"
-                  key={`tab-${i}`}
-                >
-                  {tab.label}
-                </Tab>
-              ))
-            : tabOptions.map((tab, i) => (
-                <Tab
-                  padding="1.3rem"
-                  fontSize="1.4rem !important"
-                  fontWeight="bold"
-                  borderBottomWidth="1px"
-                  // color="ego.primary"
-                  key={`tab-${i}`}
-                >
-                  {tab.label}
-                </Tab>
-              ))}
-        </TabList>
+      {currentTab !== null ? (
+        <Tabs
+          outline="none !important"
+          paddingX="5px"
+          isFitted={smallScreens ? true : false}
+          defaultIndex={currentTab ?? 0}
+        >
+          <TabList>
+            {smallScreens
+              ? tabOptions2.map((tab, i) => (
+                  <Tab
+                    padding="1.3rem"
+                    fontSize="1.4rem !important"
+                    fontWeight="bold"
+                    borderBottomWidth="1px"
+                    // color="ego.primary"
+                    key={`tab-${i}`}
+                  >
+                    {tab.label}
+                  </Tab>
+                ))
+              : tabOptions.map((tab, i) => (
+                  <Tab
+                    padding="1.3rem"
+                    fontSize="1.4rem !important"
+                    fontWeight="bold"
+                    borderBottomWidth="1px"
+                    // color="ego.primary"
+                    key={`tab-${i}`}
+                  >
+                    {tab.label}
+                  </Tab>
+                ))}
+          </TabList>
 
-        <TabPanels>
-          {tabOptions.map(({ content: Component }, i) => (
-            <TabPanel key={`tab panel-${i}`}>
-              {
-                <div>
-                  <Component />
-                </div>
-              }
-            </TabPanel>
-          ))}
-        </TabPanels>
-      </Tabs>
+          <TabPanels>
+            {tabOptions.map(({ content: Component }, i) => (
+              <TabPanel key={`tab panel-${i}`}>
+                {
+                  <div>
+                    <Component />
+                  </div>
+                }
+              </TabPanel>
+            ))}
+          </TabPanels>
+        </Tabs>
+      ) : null}
     </Wrapper>
   );
 };
