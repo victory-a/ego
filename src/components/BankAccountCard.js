@@ -5,7 +5,7 @@ import { IoIosClose } from "react-icons/io";
 
 const BankAccountCard = ({ beneficiary, selected, ...props }) => {
   beneficiary.image = appendBankImage(beneficiary);
-  const { image, accountNumber, bank, accountName } = beneficiary;
+  const { image, accountNumber, bankName, accountName } = beneficiary;
 
   return (
     <Box
@@ -21,7 +21,7 @@ const BankAccountCard = ({ beneficiary, selected, ...props }) => {
       {...props}
     >
       <Flex mb="20px" justify="space-between">
-        <Image rounded="full" size="40px" src={image} alt={bank} />
+        <Image rounded="full" size="40px" src={image} alt={bankName} />
         <span arialabel="delete card button">
           <IoIosClose tabIndex="0" color="#2C1338" fontSize={28} />
         </span>
@@ -36,7 +36,7 @@ const BankAccountCard = ({ beneficiary, selected, ...props }) => {
       >
         {accountName}
       </Box>
-      <p>{`${bank}: ${accountNumber}`}</p>
+      <p>{`${bankName}: ${accountNumber}`}</p>
     </Box>
   );
 };
