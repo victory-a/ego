@@ -1,6 +1,7 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import { GiSmartphone } from "react-icons/gi";
+import { FormErrorMessage } from "@chakra-ui/core";
 
 import TextInput from "components/FormElements/TextInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
@@ -9,7 +10,7 @@ import StyledButton from "components/CustomButton";
 // import AmountInput from "components/FormElements/AmountInput";
 
 import { InlineFields } from "layout/AppLayout/styles";
-import { TabWrapper, VendorArray, ButtonWrapper } from "./styles";
+import { TabWrapper, SubscriberArray, ButtonWrapper } from "./styles";
 
 import { normalizeMobile } from "utils/formatNumber";
 import { buyAirtimeSchema } from "utils/validationSchema";
@@ -20,11 +21,11 @@ import Glo from "assets/glo.svg";
 import Airtel from "assets/airtel.svg";
 import Male from "assets/male-fb.svg";
 
-const vendors = [
+const subscribers = [
   { icon: Mtn, value: "mtn" },
   { icon: Glo, value: "glo" },
   { icon: Airtel, value: "airtel" },
-  { icon: NineMobile, value: "NineMobile" }
+  { icon: NineMobile, value: "9mobile" }
 ];
 
 const selfObject = {
@@ -33,25 +34,14 @@ const selfObject = {
 };
 
 const user = {
-  mobile: "08012345678"
+  mobile: "08012345678",
+  subscriber: "mtn"
 };
 
 const Airtime = () => {
-  const [selected, setSelected] = React.useState("");
-
-  function handleTelcoSelect(value, formikFn) {
-    if (value === "user") {
-      formikFn("mobile", user?.mobile);
-    } else {
-      formikFn("mobile", "");
-    }
-    setSelected(value);
-  }
-
   const handleSubmit = (values, setSubmitting) => {
     values.mobile = normalizeMobile(values.mobile);
     setSubmitting(false);
-    // console.log(values);
   };
 
   return (
@@ -66,32 +56,38 @@ const Airtime = () => {
       <p>Select Provider</p>
 
       <Formik
-        initialValues={{ amount: "", mobile: "" }}
+        initialValues={{ amount: "", mobile: "", subscriber: "" }}
         validationSchema={buyAirtimeSchema}
         onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
       >
-        {({ isSubmitting, setFieldValue }) => (
+        {({ isSubmitting, setFieldValue, values }) => (
           <>
-            <VendorArray>
+            <SubscriberArray>
               <button
-                className={`self vendor ${selected === selfObject.value ? "active" : ""}`}
-                onClick={() => handleTelcoSelect(selfObject.value, setFieldValue)}
-                arialabel={`${selfObject.value} airtime vendor`}
+                className={"self subscriber"}
+                onClick={() => {
+                  setFieldValue("subscriber", user?.subscriber);
+                  setFieldValue("mobile", user.mobile);
+                }}
+                arialabel={`${selfObject.value} airtime subscriber`}
               >
                 <img src={selfObject.icon} alt="male icon" />
               </button>
 
-              {vendors.map(({ icon, value }, i) => (
+              {subscribers.map(({ icon, value }, i) => (
                 <button
-                  className={`vendor ${selected === value ? "active" : ""}`}
-                  onClick={() => handleTelcoSelect(value, setFieldValue)}
-                  key={`vendor-${i}`}
-                  arialabel={`${value} airtime vendor`}
+                  className={`subscriber ${values.subscriber === value ? "active" : ""}`}
+                  onClick={() => {
+                    setFieldValue("subscriber", value);
+                  }}
+                  key={`subscriber-${i}`}
+                  arialabel={`${value} airtime subscriber`}
                 >
-                  <img src={icon} alt="mtn" className="vendor" />
+                  <img src={icon} alt={`subscriber-${value}`} className="subscriber" />
                 </button>
               ))}
-            </VendorArray>
+            </SubscriberArray>
+
             <Form>
               <InlineFields>
                 <TextInput placeholder="Amount" type="number" name="amount" />

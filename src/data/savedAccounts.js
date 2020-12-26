@@ -13,7 +13,7 @@ const savedAccounts = [
   },
   {
     bank: "Fidelity Bank",
-    accountNumber: "34567890123",
+    accountNumber: "3456789123",
     code: "070",
     accountName: "Jack Bauer"
   },
