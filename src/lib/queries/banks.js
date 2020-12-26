@@ -1,17 +1,17 @@
-import config from "config";
-import { useQuery } from "react-query";
+// import config from "config";
+// import { useQuery } from "react-query";
 
-function useBanks() {
-  const { status, data } = useQuery({
-    queryKey: "get-banks",
-    queryFn: () =>
-      fetch(`${config.BANK_URL}`)
-        .then(response => response.json())
-        .then(data => data)
-        .catch(err => err)
-  });
+// function useBanks() {
+//   const { status, data } = useQuery({
+//     queryKey: "get-banks",
+//     queryFn: () =>
+//       fetch(`${config.BANK_URL}`)
+//         .then(response => response.json())
+//         .then(data => data)
+//         .catch(err => err)
+//   });
 
-  return { status, data };
-}
+//   return { status, data };
+// }
 
-export default useBanks;
+// export default useBanks;

@@ -1,7 +1,6 @@
 /* eslint-disable indent */
 import React from "react";
 import { Tabs, TabList, Tab, TabPanels, TabPanel } from "@chakra-ui/core";
-import { useLocation } from "react-router-dom";
 import { useMediaQuery } from "react-responsive";
 
 import Phone from "./Phone";
@@ -53,7 +52,7 @@ const Pay = () => {
                     fontSize="1.4rem !important"
                     fontWeight="bold"
                     borderBottomWidth="1px"
-                    // color="ego.primary"
+                    // color="ego.inactive"
                     key={`tab-${i}`}
                   >
                     {tab.label}
@@ -65,7 +64,7 @@ const Pay = () => {
                     fontSize="1.4rem !important"
                     fontWeight="bold"
                     borderBottomWidth="1px"
-                    // color="ego.primary"
+                    // color="ego.inactive"
                     key={`tab-${i}`}
                   >
                     {tab.label}

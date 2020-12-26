@@ -1,26 +1,26 @@
 const savedAccounts = [
   {
-    bank: "First Bank of Nigeria",
+    bankName: "First Bank of Nigeria",
     accountNumber: "1234567890",
-    code: "011",
+    bankCode: "011",
     accountName: "Marcus Rashford"
   },
   {
-    bank: "Guaranty Bank",
+    bankName: "Guaranty Bank",
     accountNumber: "4567890123",
-    code: "058",
+    bankCode: "058",
     accountName: "Ekezie David"
   },
   {
-    bank: "Fidelity Bank",
+    bankName: "Fidelity Bank",
     accountNumber: "3456789123",
-    code: "070",
+    bankCode: "070",
     accountName: "Jack Bauer"
   },
   {
-    bank: "Wema Bank",
+    bankName: "Wema Bank",
     accountNumber: "7890123456",
-    code: "035",
+    bankCode: "035",
     accountName: "Poco Lee"
   }
 ];

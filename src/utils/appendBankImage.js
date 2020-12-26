@@ -7,7 +7,7 @@ import wema from "assets/wema.svg";
 export default function appendBankImage(beneficiary) {
   let image;
 
-  switch (beneficiary.code) {
+  switch (beneficiary.bankCode) {
     case "011":
       image = fbn;
       break;

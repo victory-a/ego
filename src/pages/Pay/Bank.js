@@ -9,21 +9,13 @@ import { InlineFields } from "layout/AppLayout/styles";
 
 import { sendToBankSchema } from "utils/validationSchema";
 import SelectInput from "components/FormElements/SelectInput";
-import useBanks from "lib/queries/banks";
 import BankAccountCard from "components/BankAccountCard";
 import savedAccounts from "data/savedAccounts";
 
+import banks from "data/banks.json";
+
 const Bank = () => {
-  const [banks, setBanks] = React.useState([]);
   const [beneficiaries, setBeneficiaries] = React.useState([]);
-
-  const { status, data } = useBanks();
-
-  React.useEffect(() => {
-    if (data) {
-      setBanks(data);
-    }
-  }, [data, status]);
 
   React.useEffect(() => {
     setBeneficiaries(savedAccounts);
@@ -39,7 +31,7 @@ const Bank = () => {
       <p>Saved bank account:</p>
 
       <Formik
-        initialValues={{ amount: "", bank: "", accountNumber: "", narration: "" }}
+        initialValues={{ amount: "", bankName: "", bankCode: "", accountNumber: "", narration: "" }}
         onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
         validationSchema={sendToBankSchema}
       >
@@ -51,11 +43,12 @@ const Bank = () => {
                   <BankAccountCard
                     beneficiary={beneficiary}
                     selected={Boolean(
-                      values.bank === beneficiary.code &&
+                      values.bankCode === beneficiary.bankCode &&
                         values.accountNumber === beneficiary.accountNumber
                     )}
                     onClick={() => {
-                      setFieldValue("bank", beneficiary.code);
+                      setFieldValue("bankCode", beneficiary.bankCode);
+                      setFieldValue("bankName", beneficiary.bankName);
                       setFieldValue("accountNumber", beneficiary.accountNumber);
                     }}
                     key={`beneficiary-${i}`}
@@ -68,7 +61,20 @@ const Bank = () => {
             <Form>
               <InlineFields>
                 <TextInput placeholder="Amount" type="number" name="amount" />
-                <SelectInput placeholder="Select bank" name="bank" options={banks} />
+                <SelectInput
+                  placeholder="Select bank"
+                  name="bankCode"
+                  options={banks}
+                  onChange={e => {
+                    setFieldValue("accountNumber", "");
+                    setFieldValue("bankCode", e.target.value);
+
+                    const nativeTarget = e.nativeEvent.target;
+                    const index = nativeTarget.selectedIndex;
+                    const text = nativeTarget[index].text;
+                    setFieldValue("bankName", text);
+                  }}
+                />
               </InlineFields>
               <InlineFields>
                 <TextInput

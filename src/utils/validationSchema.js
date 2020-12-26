@@ -55,7 +55,7 @@ export const buyAirtimeSchema = Yup.object().shape({
 
 export const sendToBankSchema = Yup.object().shape({
   amount: amountValidation,
-  bank: bankValidation,
+  bankCode: bankValidation,
   accountNumber: accountValidation,
   narration: randomText
 });
