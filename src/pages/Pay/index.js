@@ -26,12 +26,12 @@ const tabOptions2 = [
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
-  const [currentTab, setCurrentTab] = React.useState(null);
+  const [currentTab, setCurrentTab] = React.useState(1);
 
   const urlParams = new URLSearchParams(window.location.search);
   const tab = urlParams.get("tab");
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     setCurrentTab(Number(tab));
   }, [tab]);
 
@@ -42,7 +42,7 @@ const Pay = () => {
           outline="none !important"
           paddingX="5px"
           isFitted={smallScreens ? true : false}
-          defaultIndex={currentTab ?? 0}
+          defaultIndex={currentTab}
         >
           <TabList>
             {smallScreens

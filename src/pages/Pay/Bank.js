@@ -1,5 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { useDisclosure } from "@chakra-ui/core";
 
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
@@ -13,21 +14,48 @@ import BankAccountCard from "components/BankAccountCard";
 import savedAccounts from "data/savedAccounts";
 
 import banks from "data/banks.json";
+import Alert from "components/Alert.js/Index";
 
 const Bank = () => {
   const [beneficiaries, setBeneficiaries] = React.useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [beneficiaryToBeDeleted, setBeneficiaryToBeDeleted] = React.useState(null);
 
   React.useEffect(() => {
     setBeneficiaries(savedAccounts);
   }, []);
+
+  React.useEffect(() => {
+    // console.log("delete", beneficiaryToBeDeleted);
+  });
 
   function handleSubmit(values, setSubmitting) {
     // console.log(values);
     setSubmitting(false);
   }
 
+  function confirmDelete() {
+    setBeneficiaries(
+      beneficiaries.filter(beneficiary => beneficiaryToBeDeleted !== beneficiary.id)
+    );
+  }
+
   return (
     <TabWrapper>
+      {isOpen ? (
+        <Alert
+          {...{
+            isOpen,
+            onClose,
+            title: "Delete beneficiary",
+            onConfirm: confirmDelete,
+            cleanup: () => setBeneficiaryToBeDeleted(null),
+            size: { base: "80%", tablet: "550px" }
+          }}
+        >
+          <p>Are you sure you want to delete beneficiary?</p>
+        </Alert>
+      ) : null}
       <p>Saved bank account:</p>
 
       <Formik
@@ -42,6 +70,10 @@ const Bank = () => {
                 {beneficiaries.map((beneficiary, i) => (
                   <BankAccountCard
                     beneficiary={beneficiary}
+                    onDelete={() => {
+                      setBeneficiaryToBeDeleted(beneficiary.id);
+                      onOpen();
+                    }}
                     selected={Boolean(
                       values.bankCode === beneficiary.bankCode &&
                         values.accountNumber === beneficiary.accountNumber
