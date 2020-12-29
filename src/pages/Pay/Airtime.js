@@ -1,7 +1,6 @@
 import React from "react";
 import { Formik, Form } from "formik";
 import { GiSmartphone } from "react-icons/gi";
-import { FormErrorMessage } from "@chakra-ui/core";
 
 import TextInput from "components/FormElements/TextInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
@@ -69,7 +68,7 @@ const Airtime = () => {
                   setFieldValue("subscriber", user?.subscriber);
                   setFieldValue("mobile", user.mobile);
                 }}
-                arialabel={`${selfObject.value} airtime subscriber`}
+                aria-label={`${selfObject.value} airtime subscriber`}
               >
                 <img src={selfObject.icon} alt="male icon" />
               </button>
@@ -81,7 +80,7 @@ const Airtime = () => {
                     setFieldValue("subscriber", value);
                   }}
                   key={`subscriber-${i}`}
-                  arialabel={`${value} airtime subscriber`}
+                  aria-label={`${value} airtime subscriber`}
                 >
                   <img src={icon} alt={`subscriber-${value}`} className="subscriber" />
                 </button>
