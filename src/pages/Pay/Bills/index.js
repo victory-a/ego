@@ -6,7 +6,7 @@ import AccordionGroup from "components/AccordonGroup";
 import { RiHomeGearLine, RiTvLine } from "react-icons/ri";
 
 import { TabWrapper } from "../styles";
-import Utility from "./Utility";
+import UtilityBills from "./UtilityBills";
 import TVBills from "./TVBills";
 
 const Bills = () => {
@@ -17,7 +17,7 @@ const Bills = () => {
           <TVBills />
         </AccordionGroup>
         <AccordionGroup icon={RiHomeGearLine} title="Utlity Bills">
-          <Utility />
+          <UtilityBills />
         </AccordionGroup>
       </Accordion>
     </TabWrapper>

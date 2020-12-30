@@ -22,8 +22,12 @@ export const TabWrapper = styled.section`
   .provider {
     font-size: 1.4rem;
     font-weight: bold;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     color: ${colors.fauxBlack};
+
+    &.error {
+      color: ${colors.red};
+    }
 
     svg {
       display: inline-block;
@@ -45,7 +49,6 @@ export const TabWrapper = styled.section`
       top: 0;
       right: 0;
       margin-top: 10px;
-      border: 1px solid red;
     }
   }
 

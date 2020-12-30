@@ -1,20 +1,25 @@
 import React from "react";
+import isEmpty from "lodash.isempty";
 import { Formik, Form, FieldArray } from "formik";
 import { MdAddBox, MdClose } from "react-icons/md";
 
-// import AmountInput from "components/FormElements/AmountInput";
+import AmountInput from "components/FormElements/AmountInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
+import useCustomToast from "hooks/useCustomToast";
 
 import { sendToPhoneSchema } from "utils/validationSchema";
+import { validateAmountInput } from "utils/validateAmount";
 
 import { TabWrapper, ButtonWrapper } from "./styles";
 
 const Phone = () => {
+  const { doToast } = useCustomToast();
   const receipentObj = { amount: "", mobile: "", remark: "" };
   const handleSubmit = (values, setSubmitting) => {
     // console.log(values);
+    doToast("Leggo!", "Transaction Completed Successfully");
     setSubmitting(false);
   };
 
@@ -26,7 +31,7 @@ const Phone = () => {
         onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
         validationSchema={sendToPhoneSchema}
       >
-        {({ values, isSubmitting }) => (
+        {({ values, isSubmitting, setFieldValue, errors }) => (
           <Form>
             <FieldArray name="recipients">
               {({ remove, push }) => (
@@ -34,17 +39,13 @@ const Phone = () => {
                   {values?.recipients?.length > 0 &&
                     values.recipients.map((_, i) => (
                       <div className="inline-fields" key={`recipients-${i}`}>
-                        {/* <AmountInput
+                        <AmountInput
                           placeholder="Amount"
-                          // type="number"
                           name={`recipients.${i}.amount`}
-                        /> */}
-                        <TextInput
-                          placeholder="Amount"
-                          type="number"
-                          name={`recipients.${i}.amount`}
+                          onChange={e =>
+                            setFieldValue(`recipients.${i}.amount`, validateAmountInput(e))
+                          }
                         />
-
                         <PhoneNumberInput
                           name={`recipients.${i}.mobile`}
                           placeholder="Phone number"
@@ -73,7 +74,11 @@ const Phone = () => {
               )}
             </FieldArray>
             <ButtonWrapper>
-              <StyledButton type="submit" isLoading={false} disabled={Boolean(isSubmitting)}>
+              <StyledButton
+                type="submit"
+                isLoading={false}
+                disabled={isSubmitting || !isEmpty(errors)}
+              >
                 Send Money
               </StyledButton>
             </ButtonWrapper>

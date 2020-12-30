@@ -1,24 +1,26 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import isEmpty from "lodash.isempty";
 
 import { tvBillSchema } from "utils/validationSchema";
 import StyledButton from "components/CustomButton";
 import SelectInput from "components/FormElements/SelectInput";
 import TextInput from "components/FormElements/TextInput";
+import AmountInput from "components/FormElements/AmountInput";
+import useCustomToast from "hooks/useCustomToast";
 
 import { InlineFields } from "layout/AppLayout/styles";
 import { SubscriberArray, ButtonWrapper } from "../styles";
 
-import DSTV from "assets/dstv.png";
-import Kwese from "assets/kwese.png";
-import GOTV from "assets/gotv.png";
-
 import kwesePlans from "data/kwese.json";
 import dstvPlans from "data/dstv.json";
 import gotvPlans from "data/gotv.json";
-import AmountInput from "components/FormElements/AmountInput";
 import { validateAmountInput } from "utils/validateAmount";
 import { koboToNaira } from "utils/amountFormatters";
+
+import DSTV from "assets/dstv.png";
+import Kwese from "assets/kwese.png";
+import GOTV from "assets/gotv.png";
 
 const subscribers = [
   { icon: DSTV, value: "dstv" },
@@ -27,6 +29,7 @@ const subscribers = [
 ];
 
 const TVBills = () => {
+  const { doToast } = useCustomToast();
   const [options, setOptions] = React.useState([]);
 
   function handleSuscriberSelect(value) {
@@ -60,6 +63,7 @@ const TVBills = () => {
 
   function handleSubmit(values, setSubmitting) {
     // console.log(values);
+    doToast("Leggo!", "Transaction Completed Successfully");
     setSubmitting(false);
   }
 
@@ -69,9 +73,9 @@ const TVBills = () => {
       onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
       validationSchema={tvBillSchema}
     >
-      {({ isSubmitting, setFieldValue, values }) => (
+      {({ isSubmitting, setFieldValue, values, errors }) => (
         <>
-          <p className="provider">Select Provider</p>
+          <p className={`provider ${errors.subscriber ? "error" : ""}`}>Select Provider</p>
           <SubscriberArray>
             {subscribers.map(({ icon, value }, i) => (
               <button
@@ -107,14 +111,17 @@ const TVBills = () => {
               <AmountInput
                 placeholder="Amount"
                 name="amount"
-                // value={values.amount}
                 onChange={e => setFieldValue("amount", validateAmountInput(e))}
               />
               <TextInput placeholder="4 digit Customer ID" name="customerID" type="number" />
             </InlineFields>
             <ButtonWrapper>
-              <StyledButton type="submit" isLoading={false} disabled={Boolean(isSubmitting)}>
-                Pay TV Bill
+              <StyledButton
+                type="submit"
+                isLoading={false}
+                disabled={isSubmitting || !isEmpty(errors)}
+              >
+                Pay Bill
               </StyledButton>
             </ButtonWrapper>
           </Form>

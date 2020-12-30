@@ -1,4 +1,5 @@
 import React from "react";
+import isEmpty from "lodash.isempty";
 import { Formik, Form } from "formik";
 import { useDisclosure } from "@chakra-ui/core";
 
@@ -7,16 +8,20 @@ import StyledButton from "components/CustomButton";
 import Alert from "components/Alert.js/Index";
 import SelectInput from "components/FormElements/SelectInput";
 import BankAccountCard from "components/BankAccountCard";
+import AmountInput from "components/FormElements/AmountInput";
+import useCustomToast from "hooks/useCustomToast";
 
 import { TabWrapper, ButtonWrapper, SavedBanksWrapper } from "./styles";
 import { InlineFields } from "layout/AppLayout/styles";
 
 import { sendToBankSchema } from "utils/validationSchema";
+import { validateAmountInput } from "utils/validateAmount";
 import savedAccounts from "data/savedAccounts";
 
 import banks from "data/banks.json";
 
 const Bank = () => {
+  const { doToast } = useCustomToast();
   const [beneficiaries, setBeneficiaries] = React.useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [beneficiaryToBeDeleted, setBeneficiaryToBeDeleted] = React.useState(null);
@@ -31,6 +36,8 @@ const Bank = () => {
 
   function handleSubmit(values, setSubmitting) {
     // console.log(values);
+    doToast("Leggo!", "Transaction Completed Successfully");
+
     setSubmitting(false);
   }
 
@@ -62,11 +69,11 @@ const Bank = () => {
         onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
         validationSchema={sendToBankSchema}
       >
-        {({ isSubmitting, setFieldValue, values }) => (
+        {({ isSubmitting, setFieldValue, values, errors }) => (
           <>
             {beneficiaries.length > 0 ? (
               <>
-                <p>Saved bank account:</p>
+                <p>{`Saved bank ${beneficiaries.length > 1 ? "accounts" : "account"}`}</p>
                 <SavedBanksWrapper>
                   {beneficiaries.map((beneficiary, i) => (
                     <BankAccountCard
@@ -94,7 +101,11 @@ const Bank = () => {
             <p>Enter Details</p>
             <Form>
               <InlineFields>
-                <TextInput placeholder="Amount" type="number" name="amount" />
+                <AmountInput
+                  placeholder="Amount"
+                  name="amount"
+                  onChange={e => setFieldValue("amount", validateAmountInput(e))}
+                />
                 <SelectInput
                   placeholder="Select bank"
                   name="bankCode"
@@ -119,7 +130,11 @@ const Bank = () => {
                 <TextInput placeholder="Narration (optional)" name="narration" />
               </InlineFields>
               <ButtonWrapper>
-                <StyledButton type="submit" isLoading={false} disabled={Boolean(isSubmitting)}>
+                <StyledButton
+                  type="submit"
+                  isLoading={false}
+                  disabled={isSubmitting || !isEmpty(errors)}
+                >
                   Send Money
                 </StyledButton>
               </ButtonWrapper>

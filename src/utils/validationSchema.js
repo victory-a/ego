@@ -29,7 +29,7 @@ export const accountValidation = Yup.string()
   });
 
 export const customerIDValidation = Yup.number()
-  .required("Select a plan")
+  .required("customer ID required")
   .test("len", "Must be exactly 4 characters", val => {
     if (val !== undefined) {
       return val !== undefined && val.toString().length === 4;
@@ -81,8 +81,6 @@ export const tvBillSchema = Yup.object().shape({
 
 export const utilityBillSchema = Yup.object().shape({
   disco: Yup.string().required("Please select a disco"),
-  paymentCode: Yup.string().required("Select a Plan"),
-  plan: Yup.string().required("Select a plan"),
   amount: amountValidation,
   customerID: customerIDValidation
 });
