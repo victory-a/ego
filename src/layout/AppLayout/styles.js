@@ -68,7 +68,7 @@ export const InlineFields = styled.div`
       width: 100%;
     }
 
-    div:first-child {
+    div:not(:last-child) {
       margin-right: 4%;
     }
   }

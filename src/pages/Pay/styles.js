@@ -18,16 +18,21 @@ export const Wrapper = styled.div`
 export const TabWrapper = styled.section`
   padding: 2.5rem;
 
-  & > p {
+  & > p,
+  .provider {
     font-size: 1.4rem;
     font-weight: bold;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
     color: ${colors.fauxBlack};
-    vertical-align: middle;
+
+    &.error {
+      color: ${colors.red};
+    }
 
     svg {
-      display: inline;
+      display: inline-block;
       margin-right: 3px;
+      margin-bottom: 2px;
     }
   }
 

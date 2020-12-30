@@ -26,7 +26,7 @@ const tabOptions2 = [
 
 const Pay = () => {
   const smallScreens = useMediaQuery({ maxWidth: 500 });
-  const [currentTab, setCurrentTab] = React.useState(1);
+  const [currentTab, setCurrentTab] = React.useState(null);
 
   const urlParams = new URLSearchParams(window.location.search);
   const tab = urlParams.get("tab");

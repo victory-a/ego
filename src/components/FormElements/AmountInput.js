@@ -4,7 +4,7 @@ import { useField } from "formik";
 import { Input, FormLabel, FormControl, FormErrorMessage } from "@chakra-ui/core";
 
 const AmountInput = props => {
-  const { label, name, disabled } = props;
+  const { label = "", name, disabled = false } = props;
   const [field, meta] = useField(props);
   return (
     <FormControl mb="1rem" isInvalid={Boolean(meta.touched && meta.error)}>
