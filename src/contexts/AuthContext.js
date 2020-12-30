@@ -6,8 +6,8 @@ const AuthContext = React.createContext();
 const AuthProvider = ({ children }) => {
   const { Provider } = AuthContext;
 
-  const memorizedState = getStorage("user");
-  const [user, setUser] = React.useState(memorizedState);
+  const memorizedUser = getStorage("user");
+  const [user, setUser] = React.useState(memorizedUser);
 
   const login = () => {
     const user = { name: "david" };

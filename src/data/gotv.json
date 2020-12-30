@@ -1,0 +1,8 @@
+[
+  { "name": "GOtv Smallie - monthly", "amount": "80000", "paymentCode": "459122" },
+  { "name": "GOtv Smallie - quarterly", "amount": "210000", "paymentCode": "459123" },
+  { "name": "GOtv Smallie - yearly", "amount": "620000", "paymentCode": "459124" },
+  { "name": "GOtv Jinja Bouquet", "amount": "164000", "paymentCode": "459120" },
+  { "name": "GOtv Jolli Bouquet", "amount": "246000", "paymentCode": "459121" },
+  { "name": "GOtv Max", "amount": "360000", "paymentCode": "459119" }
+]

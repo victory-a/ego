@@ -13,7 +13,7 @@ const SelectInput = props => {
       <Select {...field} {...props}>
         {options.length > 0 &&
           options.map((_, i) => (
-            <option value={_.value ?? _.code} key={`options-${i}`} id={name}>
+            <option value={_.value ?? _.code ?? _.paymentCode} key={`options-${i}`} id={name}>
               {_.label ?? _.name}
             </option>
           ))}

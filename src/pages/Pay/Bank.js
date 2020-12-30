@@ -4,17 +4,17 @@ import { useDisclosure } from "@chakra-ui/core";
 
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
+import Alert from "components/Alert.js/Index";
+import SelectInput from "components/FormElements/SelectInput";
+import BankAccountCard from "components/BankAccountCard";
 
 import { TabWrapper, ButtonWrapper, SavedBanksWrapper } from "./styles";
 import { InlineFields } from "layout/AppLayout/styles";
 
 import { sendToBankSchema } from "utils/validationSchema";
-import SelectInput from "components/FormElements/SelectInput";
-import BankAccountCard from "components/BankAccountCard";
 import savedAccounts from "data/savedAccounts";
 
 import banks from "data/banks.json";
-import Alert from "components/Alert.js/Index";
 
 const Bank = () => {
   const [beneficiaries, setBeneficiaries] = React.useState([]);
@@ -56,7 +56,6 @@ const Bank = () => {
           <p>Are you sure you want to delete beneficiary?</p>
         </Alert>
       ) : null}
-      <p>Saved bank account:</p>
 
       <Formik
         initialValues={{ amount: "", bankName: "", bankCode: "", accountNumber: "", narration: "" }}
@@ -66,27 +65,30 @@ const Bank = () => {
         {({ isSubmitting, setFieldValue, values }) => (
           <>
             {beneficiaries.length > 0 ? (
-              <SavedBanksWrapper>
-                {beneficiaries.map((beneficiary, i) => (
-                  <BankAccountCard
-                    beneficiary={beneficiary}
-                    onDelete={() => {
-                      setBeneficiaryToBeDeleted(beneficiary.id);
-                      onOpen();
-                    }}
-                    selected={Boolean(
-                      values.bankCode === beneficiary.bankCode &&
-                        values.accountNumber === beneficiary.accountNumber
-                    )}
-                    onClick={() => {
-                      setFieldValue("bankCode", beneficiary.bankCode);
-                      setFieldValue("bankName", beneficiary.bankName);
-                      setFieldValue("accountNumber", beneficiary.accountNumber);
-                    }}
-                    key={`beneficiary-${i}`}
-                  />
-                ))}
-              </SavedBanksWrapper>
+              <>
+                <p>Saved bank account:</p>
+                <SavedBanksWrapper>
+                  {beneficiaries.map((beneficiary, i) => (
+                    <BankAccountCard
+                      beneficiary={beneficiary}
+                      onDelete={() => {
+                        setBeneficiaryToBeDeleted(beneficiary.id);
+                        onOpen();
+                      }}
+                      selected={Boolean(
+                        values.bankCode === beneficiary.bankCode &&
+                          values.accountNumber === beneficiary.accountNumber
+                      )}
+                      onClick={() => {
+                        setFieldValue("bankCode", beneficiary.bankCode);
+                        setFieldValue("bankName", beneficiary.bankName);
+                        setFieldValue("accountNumber", beneficiary.accountNumber);
+                      }}
+                      key={`beneficiary-${i}`}
+                    />
+                  ))}
+                </SavedBanksWrapper>
+              </>
             ) : null}
 
             <p>Enter Details</p>
@@ -97,11 +99,10 @@ const Bank = () => {
                   placeholder="Select bank"
                   name="bankCode"
                   options={banks}
-                  onChange={e => {
+                  onChange={({ target: { value }, nativeEvent: { target: nativeTarget } }) => {
                     setFieldValue("accountNumber", "");
-                    setFieldValue("bankCode", e.target.value);
+                    setFieldValue("bankCode", value);
 
-                    const nativeTarget = e.nativeEvent.target;
                     const index = nativeTarget.selectedIndex;
                     const text = nativeTarget[index].text;
                     setFieldValue("bankName", text);

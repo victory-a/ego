@@ -12,16 +12,27 @@ const mobileValidation = Yup.string()
     }
   });
 
-const amountValidation = Yup.number()
+const amountValidation = Yup.string()
   .required("Amount is required")
-  .min(1, "should be greater than zero")
-  .max(100000, "limit is 100k");
+  .test("range", "limit is 100K", val => {
+    if (val !== undefined) {
+      return val !== undefined && parseInt(val) <= 100000;
+    }
+  });
 
 export const accountValidation = Yup.string()
   .required("Please enter your bank account number")
   .test("len", "Must be exactly 10 characters", val => {
     if (val !== undefined) {
       return val !== undefined && val.toString().length === 10;
+    }
+  });
+
+export const customerIDValidation = Yup.number()
+  .required("Select a plan")
+  .test("len", "Must be exactly 4 characters", val => {
+    if (val !== undefined) {
+      return val !== undefined && val.toString().length === 4;
     }
   });
 
@@ -58,4 +69,20 @@ export const sendToBankSchema = Yup.object().shape({
   bankCode: bankValidation,
   accountNumber: accountValidation,
   narration: randomText
+});
+
+export const tvBillSchema = Yup.object().shape({
+  subscriber: Yup.string().required("Please select a subscriber"),
+  paymentCode: Yup.string().required("Select a Plan"),
+  plan: Yup.string().required("Select a plan"),
+  amount: amountValidation,
+  customerID: customerIDValidation
+});
+
+export const utilityBillSchema = Yup.object().shape({
+  disco: Yup.string().required("Please select a disco"),
+  paymentCode: Yup.string().required("Select a Plan"),
+  plan: Yup.string().required("Select a plan"),
+  amount: amountValidation,
+  customerID: customerIDValidation
 });
