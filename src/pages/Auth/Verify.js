@@ -11,7 +11,7 @@ import StyledButton from "components/CustomButton";
 
 import { FormContainer, TitleWrapper, ConfirmationWrapper } from "layout/AuthLayout/styles";
 import TextInput from "components/FormElements/TextInput";
-import CountdownTimer from "components/CountDown";
+// import CountdownTimer from "components/CountDown";
 import useCustomToast from "hooks/useCustomToast";
 
 const Verify = () => {
@@ -22,7 +22,7 @@ const Verify = () => {
 
   const handleSubmit = () => {
     login();
-    doToast("Login Success", "You have successfully logged in");
+    doToast("Leggo!", "Created Account successfully");
   };
 
   React.useLayoutEffect(() => {
@@ -42,13 +42,12 @@ const Verify = () => {
 
       <FormContainer>
         <Box mb="3rem">
-          <TitleWrapper>Account Validation</TitleWrapper>
+          <TitleWrapper>Create Pin</TitleWrapper>
         </Box>
 
         {mobile ? (
           <ConfirmationWrapper>
-            Enter the 6-digit confirmation code sent to <br /> +{phoneCountryCodeFormat(mobile)} via
-            SMS.
+            Create a 6 digit pin for <br /> +{phoneCountryCodeFormat(mobile)}
           </ConfirmationWrapper>
         ) : null}
 
@@ -60,17 +59,17 @@ const Verify = () => {
           {() => (
             <Form>
               <Box my="8rem">
-                <TextInput label="OTP" placeholder="Enter OTP" maxLength={6} name="passcode" />
-                <Box as="p" textAlign="center">
+                <TextInput label="Pin" placeholder="Enter Pin" maxLength={6} name="passcode" />
+                {/* <Box as="p" textAlign="center">
                   enter <strong>123456</strong> (Sandbox key{" "}
                   <span role="img" aria-label="wink">
                     😉
                   </span>
                   )
-                </Box>
+                </Box> */}
               </Box>
 
-              <CountdownTimer />
+              {/* <CountdownTimer /> */}
 
               <StyledButton width="full" type="submit">
                 Continue
