@@ -52,7 +52,7 @@ export function TopNav() {
 
       <UserInfoContainer>
         <Menu autoSelect={false}>
-          <MenuButton>
+          <MenuButton _focus={{ outline: "none" }}>
             <Flex alignItems="center">
               <Avatar name="Victory Asokomeh" src={maleFB} mr="1rem" />
               <p>soks</p>

@@ -23,9 +23,9 @@ import Kwese from "assets/kwese.png";
 import GOTV from "assets/gotv.png";
 
 const subscribers = [
-  { icon: DSTV, value: "dstv" },
-  { icon: Kwese, value: "kwese" },
-  { icon: GOTV, value: "gotv" }
+  { icon: DSTV, value: "DSTV" },
+  { icon: Kwese, value: "KWESE" },
+  { icon: GOTV, value: "GOTV" }
 ];
 
 const TVBills = () => {
@@ -34,14 +34,14 @@ const TVBills = () => {
 
   function handleSuscriberSelect(value) {
     switch (value) {
-      case "dstv":
+      case "DSTV":
         setOptions(dstvPlans);
         break;
-      case "gotv":
+      case "GOTV":
         setOptions(gotvPlans);
         break;
 
-      case "kwese":
+      case "KWESE":
         setOptions(kwesePlans);
         break;
 

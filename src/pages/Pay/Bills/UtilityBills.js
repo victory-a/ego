@@ -18,9 +18,9 @@ import IBEDC from "assets/ibedc.png";
 import IKEDC from "assets/ikedc.png";
 
 const discos = [
-  { icon: EKEDC, value: "ekedc" },
-  { icon: IBEDC, value: "ibedc" },
-  { icon: IKEDC, value: "ikedc" }
+  { icon: EKEDC, value: "EKEDC" },
+  { icon: IBEDC, value: "IBEDC" },
+  { icon: IKEDC, value: "IKEDC" }
 ];
 
 const UtilityBills = () => {

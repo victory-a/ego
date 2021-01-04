@@ -31,7 +31,7 @@ const TransactionDetails = ({ transaction }) => {
           Status:<span>Confirmed</span>
         </ListItem>
         <ListItem>
-          Remark:<span>Nil</span>
+          Remark:<span>{transaction.remark ?? "Nil"}</span>
         </ListItem>
         <ListItem>
           Timestamp:<span>{dayjs(transaction.createdAt).format("MM-DD-YYYY, hh:mmA")}</span>

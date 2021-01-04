@@ -4,6 +4,7 @@ import glo from "assets/glo.svg";
 import airtel from "assets/airtel.svg";
 import receive from "assets/receive.svg";
 import bankTransfer from "assets/banktransfer.svg";
+import { phoneCountryCodeFormat } from "./formatNumber";
 
 export function transformByDates(transactions) {
   const updatedTransactions = transactions.reduce((acc, transaction) => {
@@ -33,12 +34,14 @@ export const generateMetadata = transaction => {
 
   switch (transaction.type) {
     case "PHONE_TRANSFER":
-      title = `+${transaction.recipient.mobile}`;
+      title = `+${phoneCountryCodeFormat(transaction.recipient.mobile)}`;
       description = transaction.category === "debit" ? "Send" : "Receive";
       break;
 
     case "VTU":
-      title = `${transaction.recipient.subscriber} (+${transaction.recipient.mobile})`;
+      title = `${transaction.recipient.subscriber} (+${phoneCountryCodeFormat(
+        transaction.recipient.mobile
+      )})`;
       description = "Airtime Purchase";
       break;
 
