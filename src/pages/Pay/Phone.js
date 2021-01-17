@@ -13,12 +13,18 @@ import { sendToPhoneSchema } from "utils/validationSchema";
 import { validateAmountInput } from "utils/validateAmount";
 
 import { TabWrapper, ButtonWrapper } from "./styles";
+import { normalizeMobile } from "utils/formatNumber";
 
 const Phone = () => {
   const { doToast } = useCustomToast();
   const receipentObj = { amount: "", mobile: "", remark: "" };
   const handleSubmit = (values, setSubmitting) => {
-    // console.log(values);
+    const { recipients } = values;
+    recipients.forEach(recipient => {
+      recipient.mobile = normalizeMobile(recipient.mobile);
+      return recipient;
+    });
+
     doToast("Leggo!", "Transaction Completed Successfully");
     setSubmitting(false);
   };
