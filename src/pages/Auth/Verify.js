@@ -11,7 +11,6 @@ import StyledButton from "components/CustomButton";
 
 import { FormContainer, TitleWrapper, ConfirmationWrapper } from "layout/AuthLayout/styles";
 import TextInput from "components/FormElements/TextInput";
-// import CountdownTimer from "components/CountDown";
 import useCustomToast from "hooks/useCustomToast";
 
 const Verify = () => {
@@ -56,22 +55,13 @@ const Verify = () => {
           onSubmit={handleSubmit}
           validationSchema={otpValidation}
         >
-          {() => (
+          {({ errors }) => (
             <Form>
               <Box my="8rem">
                 <TextInput label="Pin" placeholder="Enter Pin" maxLength={6} name="passcode" />
-                {/* <Box as="p" textAlign="center">
-                  enter <strong>123456</strong> (Sandbox key{" "}
-                  <span role="img" aria-label="wink">
-                    😉
-                  </span>
-                  )
-                </Box> */}
               </Box>
 
-              {/* <CountdownTimer /> */}
-
-              <StyledButton width="full" type="submit">
+              <StyledButton width="full" type="submit" disabled={Boolean(errors.passcode)}>
                 Continue
               </StyledButton>
             </Form>

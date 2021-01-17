@@ -22,10 +22,10 @@ import Airtel from "assets/airtel.svg";
 import Male from "assets/male-fb.svg";
 
 const subscribers = [
-  { icon: Mtn, value: "mtn" },
-  { icon: Glo, value: "glo" },
-  { icon: Airtel, value: "airtel" },
-  { icon: NineMobile, value: "9mobile" }
+  { icon: Mtn, value: "MTN" },
+  { icon: Glo, value: "GLO" },
+  { icon: Airtel, value: "AIRTEL" },
+  { icon: NineMobile, value: "9MOBILE" }
 ];
 
 const selfObject = {

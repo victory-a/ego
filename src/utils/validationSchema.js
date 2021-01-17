@@ -36,7 +36,7 @@ export const customerIDValidation = Yup.number()
     }
   });
 
-const randomText = Yup.string().max(255, "limit is 255 characters");
+const randomText = Yup.string().max(256, "limit is 256 characters");
 
 const bankValidation = Yup.string().required("Select a bank");
 
@@ -45,7 +45,13 @@ export const getStartedValidation = Yup.object().shape({
 });
 
 export const otpValidation = Yup.object().shape({
-  passcode: Yup.string().required("OTP is required.")
+  passcode: Yup.string()
+    .required("Pin is required.")
+    .test("len", "6 digit pin required", val => {
+      if (val !== undefined) {
+        return val.toString().length === 6;
+      }
+    })
 });
 
 export const sendToPhoneSchema = Yup.object().shape({
@@ -68,7 +74,7 @@ export const sendToBankSchema = Yup.object().shape({
   amount: amountValidation,
   bankCode: bankValidation,
   accountNumber: accountValidation,
-  narration: randomText
+  remark: randomText
 });
 
 export const tvBillSchema = Yup.object().shape({

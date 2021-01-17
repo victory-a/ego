@@ -65,7 +65,7 @@ const Bank = () => {
       ) : null}
 
       <Formik
-        initialValues={{ amount: "", bankName: "", bankCode: "", accountNumber: "", narration: "" }}
+        initialValues={{ amount: "", bankName: "", bankCode: "", accountNumber: "", remark: "" }}
         onSubmit={(values, { setSubmitting }) => handleSubmit(values, setSubmitting)}
         validationSchema={sendToBankSchema}
       >
@@ -127,7 +127,7 @@ const Bank = () => {
                   name="accountNumber"
                   maxLength="10"
                 />
-                <TextInput placeholder="Narration (optional)" name="narration" />
+                <TextInput placeholder="Remark (optional)" name="remark" />
               </InlineFields>
               <ButtonWrapper>
                 <StyledButton

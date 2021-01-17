@@ -6,6 +6,7 @@ import navList from "routes/navList";
 import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra-ui/core";
 import { IoIosLogOut } from "react-icons/io";
 import maleFB from "assets/male-fb.svg";
+import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
 
 import {
   TopNavigationWrapper,
@@ -15,7 +16,6 @@ import {
   BottomNavList,
   BottomNavListItem
 } from "./styles";
-// import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
 
 export function TopNav() {
   const { pathname } = useLocation();
@@ -23,8 +23,7 @@ export function TopNav() {
   return (
     <TopNavigationWrapper>
       <Link to="/">
-        {/* <EyowoLogo /> */}
-        logo
+        <EyowoLogo />
       </Link>
 
       <Navlist>
@@ -52,7 +51,7 @@ export function TopNav() {
 
       <UserInfoContainer>
         <Menu autoSelect={false}>
-          <MenuButton>
+          <MenuButton _focus={{ outline: "none" }}>
             <Flex alignItems="center">
               <Avatar name="Victory Asokomeh" src={maleFB} mr="1rem" />
               <p>soks</p>

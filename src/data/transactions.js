@@ -6,8 +6,8 @@ export default [
     type: "BANK_TRANSFER",
     recipient: {
       accountName: "Jack Daniels",
-      accountNumber: "111111111",
-      bankCode: "000014"
+      accountNumber: "1234567890",
+      bankCode: "0014"
     },
     createdAt: "2020-12-13T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -19,7 +19,7 @@ export default [
     type: "VTU",
     recipient: {
       subscriber: "GLO",
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-12-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -31,7 +31,7 @@ export default [
     type: "VTU",
     recipient: {
       subscriber: "AIRTEL",
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-12-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -43,8 +43,8 @@ export default [
     type: "BANK_TRANSFER",
     recipient: {
       accountName: "Ekezie David",
-      accountNumber: "111111111",
-      bankCode: "000014"
+      accountNumber: "1234567890",
+      bankCode: "045"
     },
     createdAt: "2019-10-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -55,7 +55,7 @@ export default [
     category: "debit",
     type: "PHONE_TRANSFER",
     recipient: {
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-10-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -67,8 +67,8 @@ export default [
     type: "BANK_TRANSFER",
     recipient: {
       accountName: "Jack Daniels",
-      accountNumber: "111111111",
-      bankCode: "000014"
+      accountNumber: "1234567890",
+      bankCode: "089"
     },
     createdAt: "2019-07-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -79,7 +79,7 @@ export default [
     category: "credit",
     type: "PHONE_TRANSFER",
     recipient: {
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-07-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -91,7 +91,7 @@ export default [
     type: "VTU",
     recipient: {
       subscriber: "MTN",
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-07-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
@@ -103,9 +103,23 @@ export default [
     type: "VTU",
     recipient: {
       subscriber: "9MOBILE",
-      mobile: "23499999999999"
+      mobile: "08012345679"
     },
     createdAt: "2019-07-01T22:40:22.122Z",
     updatedAt: "2019-07-01T22:40:22.122Z"
+  },
+  {
+    amount: 56843000,
+    id: "5f5791735183d4378865634",
+    category: "credit",
+    type: "BANK_TRANSFER",
+    recipient: {
+      accountName: "Victory Asokomeh",
+      accountNumber: "1234567890",
+      bankCode: "001"
+    },
+    createdAt: "2019-01-01T22:40:22.122Z",
+    updatedAt: "2019-02-01T22:40:22.122Z",
+    remark: "Flenjo"
   }
 ];
