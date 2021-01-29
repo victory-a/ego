@@ -38,6 +38,11 @@ export const generateMetadata = transaction => {
       description = transaction.category === "debit" ? "Send" : "Receive";
       break;
 
+    case "UTILITY_BILL":
+      title = "Utility Bill";
+      description = transaction.category === "debit" ? "Send" : "Receive";
+      break;
+
     case "VTU":
       title = `${transaction.recipient.subscriber} (+${phoneCountryCodeFormat(
         transaction.recipient.mobile

@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 
 const GetStarted = lazy(() => import("pages/Auth/GetStarted"));
 const Verify = lazy(() => import("pages/Auth/Verify"));
+const Login = lazy(() => import("pages/Auth/Login"));
 const Home = lazy(() => import("pages/Home"));
 const Pay = lazy(() => import("pages/Pay"));
 // const Save = lazy(() => import("pages/Save"));
@@ -20,6 +21,12 @@ const routes = [
     exact: true,
     isPrivate: false,
     component: Verify
+  },
+  {
+    path: "/login",
+    exact: true,
+    isPrivate: false,
+    component: Login
   },
   {
     path: "*",

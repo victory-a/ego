@@ -19,13 +19,13 @@ const TransactionDetails = ({ transaction }) => {
       </Flex>
       <ul>
         <ListItem>
-          Transaction Reference: <span>{transaction.id}</span>
+          Transaction Reference: <span>{transaction._id}</span>
         </ListItem>
         <ListItem>
           Amount:<span className={`${transaction.category}`}>{naira(transaction.amount)}</span>
         </ListItem>
         <ListItem>
-          Balance after Transaction: <span>{naira(10035.55)}</span>
+          Balance after Transaction: <span>{naira(48035.55)}</span>
         </ListItem>
         <ListItem>
           Status:<span>Confirmed</span>

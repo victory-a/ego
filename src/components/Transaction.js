@@ -12,7 +12,7 @@ const Transaction = ({ transaction, onOpen, setCurrent }) => {
     <Fragment>
       <li
         className="sudo-list"
-        key={`transaction-${transaction.id}`}
+        key={`transaction-${transaction._id}`}
         padding="2rem"
         onClick={toggleMoreDetails}
       >

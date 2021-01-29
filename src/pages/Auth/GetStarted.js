@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { queryCache, useMutation } from "react-query";
 import { Box } from "@chakra-ui/core";
 import { Formik, Form } from "formik";
 import { useHistory } from "react-router-dom";
@@ -7,14 +8,31 @@ import { getStartedValidation } from "utils/validationSchema";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
 
+import { validateUser } from "lib/auth";
 import { FormContainer, TitleWrapper, DescriptionWrapper } from "layout/AuthLayout/styles";
 import { normalizeMobile } from "utils/formatNumber";
 
 const GetStarted = () => {
   const { push } = useHistory();
-  const handleSubmit = ({ mobile }) => {
-    push({ pathname: "/verify", state: { mobile: normalizeMobile(mobile) } });
-  };
+
+  const [mutate, { status, error }] = useMutation(validateUser);
+
+  async function handleSubmit({ mobile }) {
+    const data = await mutate(
+      { mobile: normalizeMobile(mobile) },
+      {
+        onSuccess: async () => {
+          return await queryCache.invalidateQueries("user");
+        }
+      }
+    );
+
+    if (data?.validUser === true) {
+      push({ pathname: "/login", state: { mobile: normalizeMobile(mobile) } });
+    } else if (data?.validUser === false) {
+      push({ pathname: "/verify", state: { mobile: normalizeMobile(mobile) } });
+    }
+  }
 
   return (
     <Fragment>

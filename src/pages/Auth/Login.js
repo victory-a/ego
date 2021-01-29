@@ -5,7 +5,7 @@ import { Box, Link, Icon, Text } from "@chakra-ui/core";
 import { Formik, Form } from "formik";
 import { useLocation, useHistory } from "react-router-dom";
 
-import { register } from "lib/auth";
+import { login } from "lib/auth";
 import { phoneCountryCodeFormat } from "utils/formatNumber";
 import { otpValidation } from "utils/validationSchema";
 import StyledButton from "components/CustomButton";
@@ -24,7 +24,7 @@ const Verify = () => {
     if (!mobile) push("/");
   });
 
-  const [mutate, { status, error }] = useMutation(register);
+  const [mutate, { status, error }] = useMutation(login);
 
   async function handleSubmit({ pin }) {
     await mutate(
@@ -32,7 +32,7 @@ const Verify = () => {
       {
         onSuccess: async () => {
           await queryCache.invalidateQueries("user");
-          doToast("Leggo!", "Account Created successfully");
+          doToast("Leggo!", "Login Successful");
         }
       }
     );
@@ -51,12 +51,12 @@ const Verify = () => {
 
       <FormContainer>
         <Box mb="3rem">
-          <TitleWrapper>Create Pin</TitleWrapper>
+          <TitleWrapper>Welcome Back</TitleWrapper>
         </Box>
 
         {mobile ? (
           <ConfirmationWrapper>
-            Create a 6 digit pin for <br /> +{phoneCountryCodeFormat(mobile)}
+            Enter the 6 digit pin for <br /> +{phoneCountryCodeFormat(mobile)}
           </ConfirmationWrapper>
         ) : null}
 
@@ -72,9 +72,7 @@ const Verify = () => {
 
                 <ShowError
                   status={status}
-                  error={
-                    error === "Kindly provide a mobile and pin" ? "Invalid credentials" : error
-                  }
+                  error={error === "Invalid credentials" ? "pin or mobile incorrect" : error}
                 />
               </Box>
 
