@@ -26,7 +26,8 @@ export function TopNav() {
   return (
     <TopNavigationWrapper>
       <Link to="/">
-        <EyowoLogo />
+        {/* <EyowoLogo /> */}
+        Ego
       </Link>
 
       <Navlist>
