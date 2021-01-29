@@ -1,7 +1,9 @@
 import React from "react";
+import { queryCache, useMutation } from "react-query";
 import isEmpty from "lodash.isempty";
 import { Formik, Form, FieldArray } from "formik";
 import { MdAddBox, MdClose } from "react-icons/md";
+import { sendToMobile } from "lib/transaction";
 
 import AmountInput from "components/FormElements/AmountInput";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
@@ -17,17 +19,30 @@ import { normalizeMobile } from "utils/formatNumber";
 
 const Phone = () => {
   const { doToast } = useCustomToast();
+  const [mutate] = useMutation(sendToMobile);
+
   const receipentObj = { amount: "", mobile: "", remark: "" };
-  const handleSubmit = (values, setSubmitting) => {
+
+  async function handleSubmit(values, setSubmitting) {
     const { recipients } = values;
     recipients.forEach(recipient => {
       recipient.mobile = normalizeMobile(recipient.mobile);
       return recipient;
     });
 
-    doToast("Leggo!", "Transaction Completed Successfully");
+    await mutate(values, {
+      onSuccess: async () => {
+        await queryCache.invalidateQueries("getTransactions");
+        await queryCache.invalidateQueries("getBalance");
+        doToast("Leggo!", "Transaction Completed Successfully");
+      },
+
+      onError: error => {
+        doToast("Failed", error, "error");
+      }
+    });
     setSubmitting(false);
-  };
+  }
 
   return (
     <TabWrapper>

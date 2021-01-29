@@ -1,11 +1,14 @@
 import React from "react";
+import { useQuery } from "react-query";
 import { useDisclosure, Box } from "@chakra-ui/core";
-import transactions from "data/transactions";
 import dayjs from "dayjs";
 
+import { getTransactions } from "lib/transaction.js";
 import Transaction from "components/Transaction";
 import TransactionDetails from "components/TransactionDetails.js";
 import Modal from "components/Modal";
+import LoadingSkeleton from "components/Skeleton.js";
+import NoContent from "components/NoContent.js";
 
 import { appendImageAndMetadata, transformByDates } from "utils/formatTransaction";
 import { TransactionList, TransactionsWrapper, CardTitle } from "./styles";
@@ -13,6 +16,9 @@ import FilterMenuSelect from "components/FilterMenuSelect";
 
 const Transactions = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { data, status } = useQuery("getTransactions", getTransactions);
+  const [transactions, setTransactions] = React.useState([]);
+
   const [filteredTransactions, setFilteredTransactions] = React.useState(transactions);
 
   // state for to hold selected transaction to be rendered in transactions details modal
@@ -25,6 +31,12 @@ const Transactions = () => {
   });
 
   React.useEffect(() => {
+    if (data?.length > 0) {
+      setTransactions(data);
+    }
+  }, [data]);
+
+  React.useEffect(() => {
     let filterResults;
     if (selected.value === "all") {
       filterResults = transactions;
@@ -33,7 +45,7 @@ const Transactions = () => {
     }
 
     setFilteredTransactions(filterResults);
-  }, [selected]);
+  }, [selected, transactions]);
 
   const transformedTransactions = React.useMemo(
     () => appendImageAndMetadata(filteredTransactions),
@@ -64,25 +76,31 @@ const Transactions = () => {
             <h2>Transactions</h2>
             <FilterMenuSelect {...{ selected, setSelected }} />
           </CardTitle>
-          {refinedTransactions.map(_ => {
-            const date =
-              dayjs().format("DD MMMM, YYYY") === dayjs(_.date).format("DD MMMM, YYYY")
-                ? "Today"
-                : dayjs(_.date).format("DD MMMM, YYYY");
+          {status === "loading" ? (
+            <LoadingSkeleton />
+          ) : refinedTransactions?.length > 0 ? (
+            refinedTransactions.map(_ => {
+              const date =
+                dayjs().format("DD MMMM, YYYY") === dayjs(_.date).format("DD MMMM, YYYY")
+                  ? "Today"
+                  : dayjs(_.date).format("DD MMMM, YYYY");
 
-            const details = _.transactions.map(transaction => (
-              <ul key={`transaction-${transaction.id}`}>
-                <Transaction {...{ transaction, onOpen, setCurrent }} />
-              </ul>
-            ));
+              const details = _.transactions.map(transaction => (
+                <ul key={`transaction-${transaction._id}`}>
+                  <Transaction {...{ transaction, onOpen, setCurrent }} />
+                </ul>
+              ));
 
-            return (
-              <li className="transaction-group" key={`transaction-${_.date}`}>
-                <h3>{date}</h3>
-                {details}
-              </li>
-            );
-          })}
+              return (
+                <li className="transaction-group" key={`transaction-${_.date}`}>
+                  <h3>{date}</h3>
+                  {details}
+                </li>
+              );
+            })
+          ) : (
+            <NoContent caption="No transactions!" />
+          )}
         </TransactionList>
       </TransactionsWrapper>
     </Box>

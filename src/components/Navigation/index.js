@@ -7,6 +7,7 @@ import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra
 import { IoIosLogOut } from "react-icons/io";
 import maleFB from "assets/male-fb.svg";
 import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
+import { useQuery, queryCache } from "react-query";
 
 import {
   TopNavigationWrapper,
@@ -19,7 +20,9 @@ import {
 
 export function TopNav() {
   const { pathname } = useLocation();
-  const { logout } = useAuth();
+  const { handleLogout } = useAuth();
+  const data = queryCache.getQueryData("user");
+
   return (
     <TopNavigationWrapper>
       <Link to="/">
@@ -54,11 +57,11 @@ export function TopNav() {
           <MenuButton _focus={{ outline: "none" }}>
             <Flex alignItems="center">
               <Avatar name="Victory Asokomeh" src={maleFB} mr="1rem" />
-              <p>soks</p>
+              <p>{data?.user?.mobile}</p>
             </Flex>
           </MenuButton>
           <MenuList borderRadius="8px" placement="bottom" border="0.5px solid #2C1338">
-            <MenuItem p="1rem" onClick={logout}>
+            <MenuItem p="1rem" onClick={handleLogout}>
               <Box as="span" mr="0.5rem">
                 <IoIosLogOut />
               </Box>

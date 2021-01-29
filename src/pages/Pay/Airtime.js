@@ -1,9 +1,11 @@
 import React from "react";
 import { Formik, Form } from "formik";
+import { queryCache, useMutation } from "react-query";
 import isEmpty from "lodash.isempty";
 import { GiSmartphone } from "react-icons/gi";
 
 import AmountInput from "components/FormElements/AmountInput";
+import { buyAirtime } from "lib/transaction";
 import PhoneNumberInput from "components/FormElements/PhoneNumberInput";
 import StyledButton from "components/CustomButton";
 import useCustomToast from "hooks/useCustomToast";
@@ -33,19 +35,36 @@ const selfObject = {
   value: "user"
 };
 
-const user = {
-  mobile: "08012345678"
-};
-
 const Airtime = () => {
   const { doToast } = useCustomToast();
+  const [mutate] = useMutation(buyAirtime);
 
-  const handleSubmit = (values, setSubmitting) => {
+  const data = queryCache.getQueryData("user");
+
+  async function handleSubmit(values, setSubmitting) {
     values.mobile = normalizeMobile(values.mobile);
-    // console.log(values);
-    doToast("Leggo!", "Transaction Completed Successfully");
+    const payload = {
+      amount: values.amount,
+      category: "debit",
+      recipient: {
+        subscriber: values.subscriber,
+        mobile: values.mobile
+      }
+    };
+
+    await mutate(payload, {
+      onSuccess: async () => {
+        await queryCache.invalidateQueries("getTransactions");
+        await queryCache.invalidateQueries("getBalance");
+        doToast("Leggo!", "Transaction Completed Successfully");
+      },
+
+      onError: error => {
+        doToast("Failed", error, "error");
+      }
+    });
     setSubmitting(false);
-  };
+  }
 
   return (
     <TabWrapper>
@@ -69,12 +88,11 @@ const Airtime = () => {
               <button
                 className={"self subscriber"}
                 onClick={() => {
-                  setFieldValue("subscriber", user?.subscriber);
-                  setFieldValue("mobile", user.mobile);
+                  setFieldValue("mobile", data?.user?.mobile);
                 }}
                 aria-label={`${selfObject.value} airtime subscriber`}
               >
-                <img src={selfObject.icon} alt="male icon" />
+                <img src={Male} alt="male icon" />
               </button>
 
               {subscribers.map(({ icon, value }, i) => (

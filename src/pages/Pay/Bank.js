@@ -1,7 +1,11 @@
 import React from "react";
+import { queryCache, useMutation } from "react-query";
 import isEmpty from "lodash.isempty";
 import { Formik, Form } from "formik";
 import { useDisclosure } from "@chakra-ui/core";
+import { useFetchBeneficiaries } from "lib/queries/data";
+
+import { sendToBank } from "lib/transaction";
 
 import TextInput from "components/FormElements/TextInput";
 import StyledButton from "components/CustomButton";
@@ -16,34 +20,57 @@ import { InlineFields } from "layout/AppLayout/styles";
 
 import { sendToBankSchema } from "utils/validationSchema";
 import { validateAmountInput } from "utils/validateAmount";
-import savedAccounts from "data/savedAccounts";
-
 import banks from "data/banks.json";
 
 const Bank = () => {
   const { doToast } = useCustomToast();
+  const { data: beneficiariesData } = useFetchBeneficiaries();
+  const [mutate] = useMutation(sendToBank);
+
   const [beneficiaries, setBeneficiaries] = React.useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [beneficiaryToBeDeleted, setBeneficiaryToBeDeleted] = React.useState(null);
 
   React.useEffect(() => {
-    setBeneficiaries(savedAccounts);
-  }, []);
+    if (beneficiariesData?.length > 0) {
+      setBeneficiaries(beneficiariesData);
+    }
+  }, [beneficiariesData]);
 
   React.useEffect(() => {
     // console.log("delete", beneficiaryToBeDeleted);
   });
 
-  function handleSubmit(values, setSubmitting) {
-    // console.log(values);
-    doToast("Leggo!", "Transaction Completed Successfully");
+  async function handleSubmit(values, setSubmitting) {
+    const payload = {
+      amount: values.amount,
+      category: "debit",
+      recipient: {
+        accountName: "Random name",
+        accountNumber: values.accountNumber,
+        bankCode: values.bankCode,
+        remark: values.remark
+      }
+    };
+
+    await mutate(payload, {
+      onSuccess: async () => {
+        await queryCache.invalidateQueries("getTransactions");
+        await queryCache.invalidateQueries("getBalance");
+        doToast("Leggo!", "Transaction Completed Successfully");
+      },
+
+      onError: error => {
+        doToast("Failed", error, "error");
+      }
+    });
 
     setSubmitting(false);
   }
 
   function confirmDelete() {
     setBeneficiaries(
-      beneficiaries.filter(beneficiary => beneficiaryToBeDeleted !== beneficiary.id)
+      beneficiaries.filter(beneficiary => beneficiaryToBeDeleted !== beneficiary._id)
     );
   }
 
@@ -79,7 +106,7 @@ const Bank = () => {
                     <BankAccountCard
                       beneficiary={beneficiary}
                       onDelete={() => {
-                        setBeneficiaryToBeDeleted(beneficiary.id);
+                        setBeneficiaryToBeDeleted(beneficiary._id);
                         onOpen();
                       }}
                       selected={Boolean(
@@ -88,7 +115,7 @@ const Bank = () => {
                       )}
                       onClick={() => {
                         setFieldValue("bankCode", beneficiary.bankCode);
-                        setFieldValue("bankName", beneficiary.bankName);
+                        // setFieldValue("bankName", beneficiary.bankName);
                         setFieldValue("accountNumber", beneficiary.accountNumber);
                       }}
                       key={`beneficiary-${i}`}

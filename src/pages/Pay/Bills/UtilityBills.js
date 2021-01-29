@@ -1,14 +1,16 @@
 import React from "react";
+import { queryCache, useMutation } from "react-query";
 import { Formik, Form } from "formik";
 import isEmpty from "lodash.isempty";
+
+import useCustomToast from "hooks/useCustomToast";
+import { payBill } from "lib/transaction";
+import { utilityBillSchema } from "utils/validationSchema";
+import { validateAmountInput } from "utils/validateAmount";
 
 import StyledButton from "components/CustomButton";
 import TextInput from "components/FormElements/TextInput";
 import AmountInput from "components/FormElements/AmountInput";
-import useCustomToast from "hooks/useCustomToast";
-
-import { utilityBillSchema } from "utils/validationSchema";
-import { validateAmountInput } from "utils/validateAmount";
 
 import { InlineFields } from "layout/AppLayout/styles";
 import { SubscriberArray, ButtonWrapper } from "../styles";
@@ -25,10 +27,29 @@ const discos = [
 
 const UtilityBills = () => {
   const { doToast } = useCustomToast();
+  const [mutate] = useMutation(payBill);
 
-  function handleSubmit(values, setSubmitting) {
-    // console.log(values);
-    doToast("Leggo!", "Transaction Completed Successfully");
+  async function handleSubmit({ amount, customerID, disco }, setSubmitting) {
+    const payload = {
+      amount,
+      category: "debit",
+      recipient: {
+        customerID: customerID,
+        disco: disco
+      }
+    };
+
+    await mutate(payload, {
+      onSuccess: async () => {
+        await queryCache.invalidateQueries("getTransactions");
+        await queryCache.invalidateQueries("getBalance");
+        doToast("Leggo!", "Transaction Completed Successfully");
+      },
+
+      onError: error => {
+        doToast("Failed", error, "error");
+      }
+    });
     setSubmitting(false);
   }
 

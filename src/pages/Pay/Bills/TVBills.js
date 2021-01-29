@@ -1,8 +1,12 @@
 import React from "react";
+import { queryCache, useMutation } from "react-query";
 import { Formik, Form } from "formik";
 import isEmpty from "lodash.isempty";
 
+import { payBill } from "lib/transaction";
+import { getPlans } from "lib/queries/data";
 import { tvBillSchema } from "utils/validationSchema";
+
 import StyledButton from "components/CustomButton";
 import SelectInput from "components/FormElements/SelectInput";
 import TextInput from "components/FormElements/TextInput";
@@ -12,9 +16,6 @@ import useCustomToast from "hooks/useCustomToast";
 import { InlineFields } from "layout/AppLayout/styles";
 import { SubscriberArray, ButtonWrapper } from "../styles";
 
-import kwesePlans from "data/kwese.json";
-import dstvPlans from "data/dstv.json";
-import gotvPlans from "data/gotv.json";
 import { validateAmountInput } from "utils/validateAmount";
 import { koboToNaira } from "utils/amountFormatters";
 
@@ -30,26 +31,25 @@ const subscribers = [
 
 const TVBills = () => {
   const { doToast } = useCustomToast();
+  const [subscriber, setSubscriber] = React.useState("");
   const [options, setOptions] = React.useState([]);
 
-  function handleSuscriberSelect(value) {
-    switch (value) {
-      case "DSTV":
-        setOptions(dstvPlans);
-        break;
-      case "GOTV":
-        setOptions(gotvPlans);
-        break;
+  const [mutate] = useMutation(payBill);
 
-      case "KWESE":
-        setOptions(kwesePlans);
-        break;
+  React.useEffect(() => {
+    subscriber !== "" && fetchPlans();
 
-      default:
-        setOptions([]);
+    async function fetchPlans() {
+      const plans = await getPlans(subscriber);
 
-        break;
+      if (plans?.length > 0) {
+        setOptions(plans);
+      }
     }
+  }, [subscriber]);
+
+  function handleSuscriberSelect(value) {
+    setSubscriber(value);
   }
 
   function prefillAmount(value, changeFn) {
@@ -61,9 +61,27 @@ const TVBills = () => {
     }
   }
 
-  function handleSubmit(values, setSubmitting) {
-    // console.log(values);
-    doToast("Leggo!", "Transaction Completed Successfully");
+  async function handleSubmit({ amount, customerID, subscriber }, setSubmitting) {
+    const payload = {
+      amount,
+      category: "debit",
+      recipient: {
+        customerID: customerID,
+        subscriber: subscriber
+      }
+    };
+    await mutate(payload, {
+      onSuccess: async () => {
+        await queryCache.invalidateQueries("getTransactions");
+        await queryCache.invalidateQueries("getBalance");
+        await queryCache.invalidateQueries("getBalance");
+        doToast("Leggo!", "Transaction Completed Successfully");
+      },
+      onError: error => {
+        doToast("Failed", error, "error");
+      }
+    });
+
     setSubmitting(false);
   }
 

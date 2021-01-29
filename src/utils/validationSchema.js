@@ -16,7 +16,7 @@ const amountValidation = Yup.string()
   .required("Amount is required")
   .test("range", "limit is 100K", val => {
     if (val !== undefined) {
-      return val !== undefined && parseInt(val) <= 100000;
+      return val !== undefined && parseInt(val) <= 100000000;
     }
   });
 
@@ -45,7 +45,7 @@ export const getStartedValidation = Yup.object().shape({
 });
 
 export const otpValidation = Yup.object().shape({
-  passcode: Yup.string()
+  pin: Yup.string()
     .required("Pin is required.")
     .test("len", "6 digit pin required", val => {
       if (val !== undefined) {
