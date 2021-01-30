@@ -11,6 +11,7 @@ export const AuthContainer = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 export const LogoWrapper = styled.div`
@@ -54,4 +55,17 @@ export const DescriptionWrapper = styled.p`
 export const ConfirmationWrapper = styled(DescriptionWrapper)`
   color: ${colors.darkGrey};
   font-size: 1.6rem;
+`;
+
+export const Credits = styled.p`
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 1rem;
+  white-space: nowrap;
+  a {
+    font-weight: bold;
+  }
 `;
