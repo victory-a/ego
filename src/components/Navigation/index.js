@@ -6,8 +6,7 @@ import navList from "routes/navList";
 import { Menu, MenuButton, MenuList, MenuItem, Avatar, Box, Flex } from "@chakra-ui/core";
 import { IoIosLogOut } from "react-icons/io";
 import maleFB from "assets/male-fb.svg";
-import { ReactComponent as EyowoLogo } from "assets/eyowo-logo.svg";
-import { useQuery, queryCache } from "react-query";
+import { queryCache } from "react-query";
 
 import {
   TopNavigationWrapper,
@@ -25,10 +24,7 @@ export function TopNav() {
 
   return (
     <TopNavigationWrapper>
-      <Link to="/">
-        {/* <EyowoLogo /> */}
-        Ego
-      </Link>
+      <Link to="/">Ego</Link>
 
       <Navlist>
         {navList.map(link => {

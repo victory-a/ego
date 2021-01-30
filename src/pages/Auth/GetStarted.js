@@ -15,7 +15,7 @@ import { normalizeMobile } from "utils/formatNumber";
 const GetStarted = () => {
   const { push } = useHistory();
 
-  const [mutate, { status, error }] = useMutation(validateUser);
+  const [mutate] = useMutation(validateUser);
 
   async function handleSubmit({ mobile }) {
     const data = await mutate(
