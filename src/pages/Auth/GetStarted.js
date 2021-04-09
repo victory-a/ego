@@ -15,7 +15,7 @@ import { normalizeMobile } from "utils/formatNumber";
 const GetStarted = () => {
   const { push } = useHistory();
 
-  const [mutate] = useMutation(validateUser);
+  const [mutate, { isLoading }] = useMutation(validateUser);
 
   async function handleSubmit({ mobile }) {
     const data = await mutate(
@@ -63,7 +63,7 @@ const GetStarted = () => {
                   Ensure you have access to this number.
                 </Box>
               </Box>
-              <StyledButton width="full" type="submit">
+              <StyledButton width="full" type="submit" isLoading={Boolean(isLoading)}>
                 Get Started
               </StyledButton>
             </Form>

@@ -24,7 +24,7 @@ const Verify = () => {
     if (!mobile) push("/");
   });
 
-  const [mutate, { status, error }] = useMutation(register);
+  const [mutate, { status, error, isLoading }] = useMutation(register);
 
   async function handleSubmit({ pin }) {
     await mutate(
@@ -78,7 +78,12 @@ const Verify = () => {
                 />
               </Box>
 
-              <StyledButton width="full" type="submit" disabled={Boolean(errors.pin)}>
+              <StyledButton
+                width="full"
+                type="submit"
+                disabled={Boolean(errors.pin)}
+                isLoading={Boolean(isLoading)}
+              >
                 Continue
               </StyledButton>
             </Form>
