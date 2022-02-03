@@ -58,6 +58,7 @@ const GetStarted = () => {
                   name="mobile"
                   label="Phone number"
                   placeholder="Enter Phone Number"
+                  autoFocus
                 />
                 <Box my="2rem" as="p">
                   Ensure you have access to this number.

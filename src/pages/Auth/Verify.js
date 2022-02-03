@@ -68,7 +68,14 @@ const Verify = () => {
           {({ errors }) => (
             <Form>
               <Box my="8rem">
-                <TextInput label="Pin" placeholder="Enter Pin" maxLength={6} name="pin" type="password" />
+                <TextInput
+                  label="Pin"
+                  placeholder="Enter Pin"
+                  maxLength={6}
+                  name="pin"
+                  type="password"
+                  autoFocus
+                />
 
                 <ShowError
                   status={status}
